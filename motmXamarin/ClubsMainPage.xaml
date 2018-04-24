@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:local="clr-namespace:motmXamarin" 
-             x:Class="motmXamarin.motmXamarinPage">
+             x:Class="motmXamarin.ClubsMainPage"
+             Title="Clubs Page">
+    
+   <Grid>
 
-        
-
-    <Grid>
         <StackLayout Spacing="100">
-                    <Button Margin="40" Text="Refresh" Clicked="OnRefresh" />
+                  <Button x:Name="WorkIt" Text="Test"/>
             <ListView ItemsSource="{Binding}" SeparatorVisibility="None">
             <ListView.ItemTemplate>
             <!--  <DataTemplate>
@@ -19,11 +18,14 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout Orientation="Horizontal" >
-                                     <Label Text="{Binding sportName}" FontSize="11" Margin="20"
-                           FontAttributes="Bold" HorizontalOptions="Center" 
-                           VerticalOptions="Center"/>
-                    <BoxView BackgroundColor="#8e8ffb" HeightRequest="2" VerticalOptions="End" Margin="0"/>
+                                <StackLayout >
+                                    <Label Text="{Binding clubName}" x:Name="{Binding clubId}" ClassId="{Binding clubId}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer   Tapped="Label_OnTapped" NumberOfTapsRequired="1"/>
+                                    </Label.GestureRecognizers>
+                                        </Label>
+                                   
+
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>

@@ -11,6 +11,14 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)motmXamarinPage.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)MotmMasterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)ClubsMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -21,6 +29,13 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Data\Sport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MotmMasterPage.xaml.cs">
+      <DependentUpon>MotmMasterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ClubsMainPage.xaml.cs">
+      <DependentUpon>ClubsMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Club.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Data\" />

@@ -8,7 +8,8 @@ namespace motmXamarin
         {
             InitializeComponent();
 
-            MainPage = new motmXamarinPage();
+            //MainPage = new motmXamarinPage();
+            MainPage = new MotmMasterPage();
         }
 
         protected override void OnStart()

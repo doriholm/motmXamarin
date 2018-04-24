@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                  x:Class="motmXamarin.MotmMasterPage"
+                  BackgroundColor="Red">
+     <MasterDetailPage.Master>
+        <ContentPage Padding="0,40,0,0" BackgroundColor="Silver" Title="☰ Menu">
+            <ContentPage.Content>
+                <StackLayout>
+                    <Label Text="Master Page" Margin="5,30,5,5" FontAttributes="Bold"/>
+                    <Button Text="All Clubs" Clicked="Handle_Clicked"/>
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    
+    <MasterDetailPage.Detail>
+         <ContentPage Padding="10">
+            <ContentPage.Content>
+                <Label Text="Detail" Margin="5,30,5,5" />
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

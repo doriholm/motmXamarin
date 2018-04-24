@@ -39,10 +39,6 @@ namespace motmXamarin
                     if (sports.All(s => s.sportId != sport.sportId))
                         sports.Add(sport);
                 }
-
-
-
-
             }
             finally
             {

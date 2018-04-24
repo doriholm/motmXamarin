@@ -34,6 +34,14 @@ namespace motmXamarin.Data
             return JsonConvert.DeserializeObject<IEnumerable<Sport>>(result);
         }
 
+        public async Task<IEnumerable<Club>> GetClubs()
+        {
+            HttpClient client = await GetClient();
+            var testString = "getclubs?sportsids=1084&sportsids=1093";
+
+            string result = await client.GetStringAsync(Url + "getclubs?sportsids=1084&sportsids=1093");
+            return JsonConvert.DeserializeObject<IEnumerable<Club>>(result);
+        }
 
     }
 }
