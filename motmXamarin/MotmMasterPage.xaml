@@ -6,9 +6,19 @@
      <MasterDetailPage.Master>
         <ContentPage Padding="0,40,0,0" BackgroundColor="Silver" Title="☰ Menu">
             <ContentPage.Content>
-                <StackLayout>
+                <StackLayout Spacing="30">
                     <Label Text="Master Page" Margin="5,30,5,5" FontAttributes="Bold"/>
-                    <Button Text="All Clubs" Clicked="Handle_Clicked"/>
+                    <Button Text="All Clubs" Clicked="ShowAllClubsPage"/>
+                    <Button Text="Football" 
+                            BackgroundColor="Gray"  
+                            ClassId="1084"
+                            Clicked="SportCheckbox"
+                            x:Name="FootballBtn"/>
+                    <Button Text="Handball" 
+                            BackgroundColor="Gray"  
+                            ClassId="1093"
+                            Clicked="SportCheckbox"
+                            x:Name="HandballBtn"/>
                 </StackLayout>
             </ContentPage.Content>
         </ContentPage>

@@ -16,11 +16,14 @@ namespace motmXamarin
     {
         readonly IList<Club> clubs = new ObservableCollection<Club>();
         readonly DataManager manager = new DataManager();
+        //If user has saved sportIds locally get that
+        readonly List<int> sportIds = new List<int>();
 
-        public ClubsMainPage()
+        public ClubsMainPage(List<int> sportIdsList)
         {
             BindingContext = clubs;
             InitializeComponent();
+            sportIds = sportIdsList;
         }
 
         protected async override void OnAppearing()
@@ -32,7 +35,15 @@ namespace motmXamarin
 
             try
             {
-                var sportCollection = await manager.GetClubs();
+                
+                if(sportIds.Count() == 0)
+                {
+                    sportIds.Add(1084);
+                }
+
+                var sportCollection = await manager.GetClubs(sportIds);
+
+
 
                 foreach (Club club in sportCollection)
                 {
@@ -47,15 +58,14 @@ namespace motmXamarin
 
         }
 
-        void Label_OnTapped(object sender, EventArgs args)
+        public void Label_OnTapped(object sender, EventArgs e)
         {
             var obj = (Label)sender;
-            int clubId = int.Parse(obj.ClassId);
-            //var obj = ((TappedEventArgs)e).Parameter;
+            int theClubId = int.Parse(obj.ClassId);
 
-            //var clubId = obj as IList<string>;
-            //WorkIt.Text = obj.clubId;
-            //WorkIt.Text = obj.;
+            //var obj = ((TappedEventArgs)e).Parameter;
+            //WorkIt.Text = obj.ClassId;
+            Navigation.PushAsync(new ClubPage(theClubId));
         }
 
 
