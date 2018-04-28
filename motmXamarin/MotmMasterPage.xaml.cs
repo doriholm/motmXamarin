@@ -22,6 +22,7 @@ namespace motmXamarin
             IsPresented = false;
         }
 
+        //
         void ShowAllClubsPage(object sender, System.EventArgs e)
         {
             

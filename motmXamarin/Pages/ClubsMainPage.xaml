@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="motmXamarin.ClubsMainPage"
+             Title="Man Of The Match">
+    
+   <Grid>
+
+<!--        <StackLayout Spacing="100">
+-->           
+
+            
+            <ListView ItemsSource="{Binding}" SeparatorVisibility="None" RowHeight="150">
+            <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                               <!-- <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding clubName}" x:Name="{Binding clubId}" ClassId="{Binding clubId}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer   Tapped="Label_OnTapped" NumberOfTapsRequired="1"/>
+                                    </Label.GestureRecognizers>
+                                        </Label>
+                                </StackLayout>-->
+
+                                 <Grid x:Name="{Binding clubId}" ClassId="{Binding clubId}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Image Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
+                       Source="stadium.png" HeightRequest="150" 
+                       Aspect="AspectFill"/>
+                <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
+                       BackgroundColor="Black" Opacity=".25"/>
+                <Image Grid.Column="0" Source="blogo.png"
+                       Margin="20" HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                 <StackLayout Grid.Column="1"  Grid.Row="0" VerticalOptions="Center">
+                    <Label Text="{Binding clubName}"
+                           TextColor="White" FontAttributes="Bold"/>
+                    <Label Text="Herning, Denmark"
+                           TextColor="White" />
+                </StackLayout>
+                              <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer   Tapped="Label_OnTapped" NumberOfTapsRequired="1"/>
+                                    </Grid.GestureRecognizers>      
+            </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+<!--        </StackLayout>
+-->
+
+       
+
+  </Grid>
+</ContentPage>

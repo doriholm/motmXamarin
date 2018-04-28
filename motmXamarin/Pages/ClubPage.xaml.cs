@@ -7,6 +7,7 @@ namespace motmXamarin
 {
     public partial class ClubPage : ContentPage
     {
+
         public ClubPage(int clubId)
         {
             InitializeComponent();

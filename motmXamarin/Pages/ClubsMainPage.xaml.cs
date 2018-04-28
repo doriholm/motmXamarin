@@ -19,10 +19,16 @@ namespace motmXamarin
         //If user has saved sportIds locally get that
         readonly List<int> sportIds = new List<int>();
 
+        //public ClubsMainPage()
+        //{
+        //    InitializeComponent();
+           
+        //}
+
         public ClubsMainPage(List<int> sportIdsList)
         {
-            BindingContext = clubs;
             InitializeComponent();
+            BindingContext = clubs;
             sportIds = sportIdsList;
         }
 
@@ -60,12 +66,13 @@ namespace motmXamarin
 
         public void Label_OnTapped(object sender, EventArgs e)
         {
-            var obj = (Label)sender;
+            var obj = (Grid)sender;
             int theClubId = int.Parse(obj.ClassId);
 
             //var obj = ((TappedEventArgs)e).Parameter;
             //WorkIt.Text = obj.ClassId;
             Navigation.PushAsync(new ClubPage(theClubId));
+
         }
 
 

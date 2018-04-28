@@ -10,41 +10,43 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)motmXamarinPage.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)MotmMasterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)ClubsMainPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\ClubPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)ClubPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\ClubsMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\motmXamarinPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)motmXamarinPage.xaml.cs">
-      <DependentUpon>motmXamarinPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Data\Sport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MotmMasterPage.xaml.cs">
       <DependentUpon>MotmMasterPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ClubsMainPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Club.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\ClubPage.xaml.cs">
+      <DependentUpon>ClubPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\ClubsMainPage.xaml.cs">
       <DependentUpon>ClubsMainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Data\Club.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ClubPage.xaml.cs">
-      <DependentUpon>ClubPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\motmXamarinPage.xaml.cs">
+      <DependentUpon>motmXamarinPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Data\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\" />
+    <Folder Include="$(MSBuildThisFileDirectory)AdminPages\" />
   </ItemGroup>
 </Project>

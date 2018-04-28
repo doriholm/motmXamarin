@@ -8,7 +8,6 @@ namespace motmXamarin
         {
             InitializeComponent();
 
-            //MainPage = new motmXamarinPage();
             MainPage = new MotmMasterPage();
         }
 
