@@ -10,7 +10,7 @@
 -->           
 
             
-            <ListView ItemsSource="{Binding}" SeparatorVisibility="None" RowHeight="150">
+            <ListView ItemsSource="{Binding}" SeparatorVisibility="None" RowHeight="150" ItemTapped="OnSelection">
             <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -46,9 +46,9 @@
                     <Label Text="Herning, Denmark"
                            TextColor="White" />
                 </StackLayout>
-                              <Grid.GestureRecognizers>
+                             <!-- <Grid.GestureRecognizers>
                                         <TapGestureRecognizer   Tapped="Label_OnTapped" NumberOfTapsRequired="1"/>
-                                    </Grid.GestureRecognizers>      
+                                    </Grid.GestureRecognizers>   -->   
             </Grid>
                             </ViewCell.View>
                         </ViewCell>

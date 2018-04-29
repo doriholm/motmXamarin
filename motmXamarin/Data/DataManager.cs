@@ -11,7 +11,7 @@ namespace motmXamarin.Data
     public class DataManager
     {
         const string Url = "https://motmv2.azurewebsites.net/umbraco/api/postsapi/";
-        private string authorizationKey = "auth";
+        private string authorizationKey = "auth"; //Change so it applies to user login method
 
         private async Task<HttpClient> GetClient()
         {
@@ -42,9 +42,6 @@ namespace motmXamarin.Data
             }
 
             HttpClient client = await GetClient();
-            //var testString = "getclubs?sportsids=1084&sportsids=1093";
-
-            //string result = await client.GetStringAsync(Url + "getclubs?sportsids=1084&sportsids=1093");
             string result = await client.GetStringAsync(Url + searchString);
 
             return JsonConvert.DeserializeObject<IEnumerable<Club>>(result);

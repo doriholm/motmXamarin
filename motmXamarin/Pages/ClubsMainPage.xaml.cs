@@ -64,15 +64,30 @@ namespace motmXamarin
 
         }
 
-        public void Label_OnTapped(object sender, EventArgs e)
+        //public void Label_OnTapped(object sender, EventArgs e)
+        //{
+        //    var obj = (Grid)sender;
+        //    int theClubId = int.Parse(obj.ClassId);
+
+        //    //var obj = ((TappedEventArgs)e).Parameter;
+        //    //WorkIt.Text = obj.ClassId;
+        //    Navigation.PushAsync(new ClubPage(theClubId));
+
+        //}
+
+         void OnSelection(object sender, ItemTappedEventArgs e)
         {
-            var obj = (Grid)sender;
-            int theClubId = int.Parse(obj.ClassId);
+            var club = (ListView)sender;
+            var myJob = (club.SelectedItem as Club);
 
-            //var obj = ((TappedEventArgs)e).Parameter;
-            //WorkIt.Text = obj.ClassId;
-            Navigation.PushAsync(new ClubPage(theClubId));
+            Navigation.PushAsync(new ClubPage(myJob.clubId));
 
+            //if (e.Item == null)
+            //{
+            //    return; //ItemSelected is called on deselection, which results in SelectedItem being set to null
+            //}
+            //DisplayAlert("Item Selected", e.Item.ToString(), "Ok");
+            ////((ListView)sender).SelectedItem = null; //uncomment line if you want to disable the visual selection state.
         }
 
 
