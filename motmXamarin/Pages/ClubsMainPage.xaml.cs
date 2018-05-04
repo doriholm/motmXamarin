@@ -81,6 +81,7 @@ namespace motmXamarin
             var myJob = (club.SelectedItem as Club);
 
             Navigation.PushAsync(new ClubPage(myJob.clubId));
+            //Navigation.PushAsync(new ClubPage());
 
             //if (e.Item == null)
             //{

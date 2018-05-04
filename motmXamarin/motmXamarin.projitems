@@ -23,6 +23,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\motmXamarinPage.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\TeamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -42,6 +46,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\motmXamarinPage.xaml.cs">
       <DependentUpon>motmXamarinPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\TeamPage.xaml.cs">
+      <DependentUpon>TeamPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
