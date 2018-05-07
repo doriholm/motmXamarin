@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using motmXamarin.Pages;
+using motmXamarin.Data;
 
 using Xamarin.Forms;
 
@@ -28,6 +30,13 @@ namespace motmXamarin
             
             IsPresented = false;
             Detail = new NavigationPage(new ClubsMainPage(sportIdsList));
+        }
+
+        void ShowAllMatchesPage(object sender, System.EventArgs e)
+        {
+
+            IsPresented = false;
+            Detail = new NavigationPage(new AllMatchesPage());
         }
 
         void SportCheckbox(object sender, System.EventArgs e)

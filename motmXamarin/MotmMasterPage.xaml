@@ -9,6 +9,7 @@
                 <StackLayout Spacing="30">
                     <Label Text="Master Page" Margin="5,30,5,5" FontAttributes="Bold"/>
                     <Button Text="All Clubs" Clicked="ShowAllClubsPage"/>
+                    <Button Text="All Matches" Clicked="ShowAllMatchesPage"/>
                     <Button Text="Football" 
                             BackgroundColor="Gray"  
                             ClassId="1084"

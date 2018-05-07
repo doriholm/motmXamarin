@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="motmXamarin.Pages.AllMatchesPage">
+    
+    <ContentPage.Content>
+        
+        <StackLayout>
+             <Grid x:Name="Club" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="175"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                 <Image Grid.Column="0" Grid.RowSpan="2" Grid.Row="0"
+                       Source="stadium.png" HeightRequest="120" 
+                       Aspect="AspectFill"/>
+                <Label Grid.Column="0" Grid.RowSpan="2" Grid.Row="0"
+                            BackgroundColor="Black" Opacity=".25"/>
+                
+                <StackLayout Orientation="Vertical" Grid.Column="0"  Grid.Row="0" 
+                             HorizontalOptions="Center" Padding="20, 0"
+                             VerticalOptions="Center">
+                    <Label Text="Kamp nær dig" HorizontalTextAlignment="Center" TextColor="White" 
+                           FontAttributes="Bold" FontSize="Large"/>
+                   <Image  Source="blogo.png" HeightRequest="60"
+                       Margin="10" HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                 
+                    
+                    <Label Text="Vs Opponent" HorizontalTextAlignment="Center"
+                           TextColor="White" />
+                    <Label Text="16:00" TextColor="White" HorizontalTextAlignment="Center"
+                           FontAttributes="Bold"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="End"
+                             Grid.Column="0"  Grid.Row="1"
+                             Margin="10">
+                    <Label Text="Icon" TextColor="White"/>
+                    <Label Text="Loaction" TextColor="White"/>
+                </StackLayout>
+                 
+                <Label Grid.Row="2" x:Name="FavMatchesText"
+                       Text="2 favorithold spiller i dag" HorizontalOptions="Fill"
+                       BackgroundColor="#BFB9B9" TextColor="White"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                
+                </Grid>
+
+            <ScrollView >
+                <StackLayout >
+<!--   Favourite Teams matches               -->
+             <ListView x:Name="FavMatches" SeparatorVisibility="None" RowHeight="90"
+               ItemsSource="na" VerticalOptions="Start">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <ViewCell>
+                        <ViewCell.View>
+                                <Frame CornerRadius="5" Margin="10" 
+                        HasShadow="false" BackgroundColor="#BFB9B9" 
+                        Padding="1">
+                                    
+                    <Frame CornerRadius="5" BackgroundColor="White" 
+                           Padding="0" HasShadow="false">
+                        <StackLayout x:Name="LastMatch" Orientation="Horizontal">
+                            <Image  Source="blogo.png"
+                                    Margin="10" HorizontalOptions="Center"
+                                    VerticalOptions="Center"/>
+                    <Grid VerticalOptions="Center" HorizontalOptions="FillAndExpand" 
+                          >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions> 
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions> 
+                          <Label Grid.Row="0" Grid.Column="0" Text="TeamName1" 
+                                 HorizontalOptions="Fill" FontAttributes="Bold"/>
+                          <Label Grid.Row="1" Grid.Column="0" Text="Vs OpponentName" FontSize="12"
+                                 />
+                        
+                          <Label Grid.Row="0" Grid.Column="1" FontAttributes="Bold"
+                                 Text="13:00" HorizontalTextAlignment="End" Margin="0,0,10,0"/>
+                          <Label Grid.Row="1" Grid.Column="1" 
+                                 Text="17/04"  
+                                 FontSize="12" HorizontalTextAlignment="End"
+                                 Margin="0,0,10,0"/>
+                        
+                    </Grid>
+                        </StackLayout>
+                            </Frame>
+                 </Frame>
+                        </ViewCell.View>        
+                    </ViewCell>
+
+
+                    </DataTemplate>
+            </ListView.ItemTemplate>
+                        <ListView.Footer>
+            <StackLayout Orientation="Horizontal">
+                </StackLayout>
+            </ListView.Footer>
+         </ListView>
+<!--   End og Favourite Teams matches        -->
+            
+
+<!--   More matches         -->
+            <Label Text="Kommende kampe" HorizontalOptions="Fill"
+                BackgroundColor="#BFB9B9" TextColor="White"
+                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                HeightRequest="40"/>
+          <ListView x:Name="Matches" SeparatorVisibility="None" RowHeight="90" 
+               ItemsSource="nam" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!--<TextCell Text="{Binding teams[0].players[0].playerName}" />-->
+
+                
+                    <ViewCell>
+                        <ViewCell.View>
+                                <Frame CornerRadius="5" Margin="10" 
+                        HasShadow="false" BackgroundColor="#BFB9B9" 
+                        Padding="1">
+                                    
+                    <Frame CornerRadius="5" BackgroundColor="White" 
+                           Padding="0" HasShadow="false">
+                        <StackLayout x:Name="LastMatch" Orientation="Horizontal">
+                            <Image  Source="blogo.png"
+                                    Margin="10" HorizontalOptions="Center"
+                                    VerticalOptions="Center"/>
+                    <Grid VerticalOptions="Center" HorizontalOptions="FillAndExpand" 
+                          >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions> 
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions> 
+                          <Label Grid.Row="0" Grid.Column="0" Text="TeamName" 
+                                 HorizontalOptions="Fill" FontAttributes="Bold"/>
+                          <Label Grid.Row="1" Grid.Column="0" Text="Vs OpponentName" FontSize="12"
+                                 />
+                        
+                          <Label Grid.Row="0" Grid.Column="1" FontAttributes="Bold"
+                                 Text="12:00" HorizontalTextAlignment="End" Margin="0,0,10,0"/>
+                          <Label Grid.Row="1" Grid.Column="1" 
+                                 Text="17/04"  
+                                 FontSize="12" HorizontalTextAlignment="End"
+                                 Margin="0,0,10,0"/>
+                        
+                    </Grid>
+                        </StackLayout>
+                            </Frame>
+                 </Frame>
+                        </ViewCell.View>        
+                    </ViewCell>
+
+
+                    </DataTemplate>
+            </ListView.ItemTemplate>
+         </ListView>
+<!--   End of More matches   -->
+                    </StackLayout>
+        </ScrollView>
+                
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
