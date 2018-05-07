@@ -95,7 +95,7 @@
                 HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                 HeightRequest="40"/>
                   <ListView x:Name="NextMatches" SeparatorVisibility="None" RowHeight="90" 
-                       ItemsSource="name">
+                       ItemsSource="name" ItemSelected="Handle_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <!--<TextCell Text="{Binding teams[0].players[0].playerName}" />-->

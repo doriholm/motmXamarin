@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="motmXamarin.Pages.MatchPage">
+    
+    <ContentPage.Content>
+
+        <StackLayout>
+             <Grid x:Name="Club" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="175"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                 <Image Grid.Column="0" Grid.RowSpan="2" Grid.Row="0"
+                       Source="stadium.png" HeightRequest="120" 
+                       Aspect="AspectFill"/>
+                <Label Grid.Column="0" Grid.RowSpan="2" Grid.Row="0"
+                            BackgroundColor="Black" Opacity=".25"/>
+                
+                <StackLayout Orientation="Horizontal" Grid.Column="0"  Grid.Row="0" 
+                             HorizontalOptions="Center" Padding="20, 0"
+                             VerticalOptions="Center">
+                   <Image  Source="blogo.png" HeightRequest="80"
+                       Margin="10" HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                 <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label x:Name="ClubName" Text="Vs"
+                           TextColor="White" FontAttributes="Bold"/>
+                    <Label Text="Opponent" Margin="10,0"
+                           TextColor="White" />
+                </StackLayout>
+                    
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="End"
+                             Grid.Column="0"  Grid.Row="1"
+                             Margin="10">
+                    <Label Text="Icon" TextColor="White"/>
+                    <Label Text="Loaction" TextColor="White"/>
+                </StackLayout>
+                 
+                <Label Grid.Row="2" x:Name="ChooseMOTM"
+                       Text="Vælg man of the match" HorizontalOptions="Fill"
+                       BackgroundColor="#BFB9B9" TextColor="White"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                
+                </Grid>
+
+            
+<!--    List of Players to choose for MOTM and Sponsor      -->
+            <StackLayout x:Name="ChoosePlayer" IsVisible="false" VerticalOptions="FillAndExpand"
+                         Orientation="Vertical" Spacing="0">
+                
+                <ScrollView >
+                <StackLayout VerticalOptions="Start" >
+                    <ListView SeparatorVisibility="None" ItemsSource="343445776" x:Name="PlayerList"
+                              Margin="0" RowHeight="40" IsVisible="false">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                    <StackLayout Margin="0"  VerticalOptions="Center">
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" 
+                                                     Margin="10, 0">
+                                            <Label Text="Nr.1" Margin="0" VerticalTextAlignment="End"/>
+                                            <Label Text="PlayerName" Margin="0"/>
+                                        </StackLayout>
+                                        <Label BackgroundColor="Silver" HeightRequest="2" Margin="0"/>
+                                    </StackLayout>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                </ScrollView>
+
+    <!--   Match has Finished            -->
+            <StackLayout VerticalOptions="FillAndExpand" x:Name="MatchOver" 
+                         Margin="0" IsVisible="false">
+                    <Label Text="Nr 7 PlayerName" VerticalOptions="CenterAndExpand"
+                           HorizontalTextAlignment="Center" Margin="0,30"/>
+                    <Image Source="stadium.png" VerticalOptions="EndAndExpand"
+                           />
+                </StackLayout>
+    <!--   End of Match has Finished            -->
+                
+            <Frame HasShadow="false" BackgroundColor="#85D093" CornerRadius="0" 
+                   VerticalOptions="End" Margin="0" x:Name="SponsorAd" IsVisible="true">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                    <Label Text="Sponsoreret af" TextColor="White"/>
+                    <Label Text="Icon" />
+                </StackLayout>
+            </Frame>
+                
+            </StackLayout>
+<!--   End of List of Players to choose for MOTM and sponsor     -->
+
+<!--   Thanks for Voting            -->
+            <StackLayout Orientation="Vertical" Spacing="20" x:Name="ThxForVoting" IsVisible="true"
+                         HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                <Label Text="Thank you for voting" HorizontalTextAlignment="Center"
+                       FontSize="Large" FontAttributes="Bold"/>
+                <Image Source="blogo.png" HeightRequest="100"/>
+                <Label Text="Du er nu med i lodtrækningen om et gavekort på 500 kroner til Bone’s i Kolding"
+                       LineBreakMode="WordWrap" WidthRequest="250"
+                       HorizontalTextAlignment="Center"/>
+            </StackLayout>
+<!--   End ofThanks for Voting            -->
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

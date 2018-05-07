@@ -17,5 +17,10 @@ namespace motmXamarin.Pages
             InitializeComponent();
             NextMatches.ItemsSource = "nae";
         }
+
+        public async void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            await Navigation.PushAsync(new MatchPage());
+        }
     }
 }
