@@ -34,6 +34,15 @@ namespace motmXamarin
             //singleClubId = clubId;
             Club.BindingContext = newClub;
 
+            //When selectedItem is set to null it Fires again. Still highlighting the view when tapped
+            Teams.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+                // don't do anything if we just de-selected the row
+                if (e.Item == null) return;
+                // do something with e.SelectedItem
+                ((ListView)sender).SelectedItem = null; // de-select the row
+                Navigation.PushAsync(new TeamPage());
+            };
+
         }
 
 
@@ -45,6 +54,7 @@ namespace motmXamarin
             var singleClub = newClub as SingleClub;
             foreach (Team team in singleClub.teams)
                 {
+                if (teams.All(t => t.teamId != team.teamId))
                     teams.Add(team);
                 }
 
@@ -83,5 +93,10 @@ namespace motmXamarin
         }
 
 
+        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            
+           // Navigation.PushAsync(new TeamPage());
+        }
     }
 }

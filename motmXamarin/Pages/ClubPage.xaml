@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="motmXamarin.ClubPage"
-             Title="Man Of The Match">
+             >
     
     <ContentPage.Content>
        
@@ -38,17 +38,7 @@
                 </StackLayout>
 
 
-                 <StackLayout Orientation="Vertical" 
-                              Grid.Column="0"  Grid.Row="1" 
-                              VerticalOptions="Center"
-                              Padding="20,0">
-                   <Label Text="CrownIcon" FontAttributes="Bold" />
-                   <Label Text="Jakob Paulsen" FontAttributes="Bold"
-                          TextColor="White"/>
-                    <Label Text="5x times Man of the match"
-                           TextColor="White"/>
 
-                </StackLayout>
                 <Label Grid.Row="2" 
                        Text="Teams" HorizontalOptions="Fill"
                        BackgroundColor="#BFB9B9" TextColor="White"
@@ -56,7 +46,8 @@
                 
                 </Grid>
 
-             <ListView x:Name="Teams" SeparatorVisibility="None" RowHeight="70" >
+             <ListView x:Name="Teams" SeparatorVisibility="None" RowHeight="70" 
+                       ItemSelected="Handle_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <!--<TextCell Text="{Binding teams[0].players[0].playerName}" />-->

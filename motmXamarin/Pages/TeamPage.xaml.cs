@@ -15,6 +15,7 @@ namespace motmXamarin.Pages
         public TeamPage()
         {
             InitializeComponent();
+            NextMatches.ItemsSource = "nae";
         }
     }
 }
