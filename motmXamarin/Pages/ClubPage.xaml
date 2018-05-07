@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="motmXamarin.ClubPage">
+             x:Class="motmXamarin.ClubPage"
+             Title="Man Of The Match">
     
     <ContentPage.Content>
        
        <StackLayout>
-              <Grid x:Name="Club" >
+              <Grid x:Name="Club" RowSpacing="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="125"/>
                                     <RowDefinition Height="100"/>
+                                    <RowDefinition Height="30" />
                                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -47,11 +49,14 @@
                            TextColor="White"/>
 
                 </StackLayout>
+                <Label Grid.Row="2" 
+                       Text="Teams" HorizontalOptions="Fill"
+                       BackgroundColor="#BFB9B9" TextColor="White"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 
                 </Grid>
 
-            <Label x:Name="test" Text="Working" />
-             <ListView x:Name="Teams" SeparatorVisibility="None" RowHeight="150">
+             <ListView x:Name="Teams" SeparatorVisibility="None" RowHeight="70" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <!--<TextCell Text="{Binding teams[0].players[0].playerName}" />-->
@@ -59,12 +64,17 @@
                 
                     <ViewCell>
                         <ViewCell.View>
-                        <StackLayout>
-                                    <Label Text="{Binding teamName}" />
+                                <Frame CornerRadius="5" Margin="10" 
+                                       HasShadow="false" BackgroundColor="#BFB9B9"
+                                       Padding="1">
+                                    
+                                    <Frame CornerRadius="5" BackgroundColor="White" 
+                                           Padding="0" HasShadow="false">
+                                        <Label Text="{Binding teamName}" 
+                                               Margin="10, 0" VerticalOptions="Center"/>
+                                    </Frame>
 
-
-                                </StackLayout>
-                                
+                                </Frame>
                         </ViewCell.View>        
                     </ViewCell>
 
