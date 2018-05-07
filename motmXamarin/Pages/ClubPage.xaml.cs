@@ -1,4 +1,5 @@
 ﻿using motmXamarin.Data;
+using motmXamarin.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,11 +13,11 @@ namespace motmXamarin
 {
     public partial class ClubPage : ContentPage
     {
-        readonly int singleClubId; 
+        //readonly int singleClubId; 
         readonly DataManager manager = new DataManager();
         readonly IList<Team> teams = new ObservableCollection<Team>();
         readonly ObservableCollection<SingleClub> thisClub = new ObservableCollection<SingleClub>();
-        //object newClub = new { clubName = "John Doe", Company = "Xamarin" };
+
         object newClub;
 
         //public ClubPage()
@@ -24,13 +25,14 @@ namespace motmXamarin
         //    InitializeComponent();
         //}
 
-        public ClubPage(int clubId)
+        public ClubPage(SingleClub clubObject)
         {
             InitializeComponent();
 
-
+            newClub = clubObject as SingleClub;
             Teams.ItemsSource = teams;
-            singleClubId = clubId;
+            //singleClubId = clubId;
+            Club.BindingContext = newClub;
 
         }
 
@@ -40,39 +42,46 @@ namespace motmXamarin
         {
             base.OnAppearing();
 
-            // Turn on network indicator
-            this.IsBusy = true;
-
-            try
-            {
-
-                var sportCollection = await manager.GetSingleClub(singleClubId);
-                GC.KeepAlive(sportCollection);
-
-                var club = sportCollection as SingleClub;
-                newClub = sportCollection;
-                    
-                thisClub.Add(sportCollection);
-
-                //int teamCount = 0;
-                foreach(Team team in sportCollection.teams)
+            var singleClub = newClub as SingleClub;
+            foreach (Team team in singleClub.teams)
                 {
-                    //teamCount += 1;
                     teams.Add(team);
                 }
 
-                ////if only one team go to TeamPage
-                //var totalCount = teamCount;
-                //ClubName.Text = club.clubName;
+            //// Turn on network indicator
+            //this.IsBusy = true;
 
-                Club.BindingContext = newClub;
+            //try
+            //{
 
-            }
-            finally
-            {
-                this.IsBusy = false;
-            }
+            //    var sportCollection = await manager.GetSingleClub(singleClubId);
+            //    GC.KeepAlive(sportCollection);
+
+            //    var club = sportCollection as SingleClub;
+            //    newClub = sportCollection;
+                    
+            //    thisClub.Add(sportCollection);
+
+
+            //    foreach(Team team in sportCollection.teams)
+            //    {
+            //        teams.Add(team);
+            //    }
+
+
+               
+            //    //ClubName.Text = club.clubName;
+
+            //    Club.BindingContext = newClub;
+
+            //}
+            //finally
+            //{
+            //    this.IsBusy = false;
+            //}
 
         }
+
+
     }
 }

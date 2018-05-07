@@ -1,4 +1,5 @@
 ﻿using motmXamarin.Data;
+using motmXamarin.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -50,7 +51,6 @@ namespace motmXamarin
                 var sportCollection = await manager.GetClubs(sportIds);
 
 
-
                 foreach (Club club in sportCollection)
                 {
                     if (clubs.All(c => c.clubId != club.clubId))
@@ -75,12 +75,45 @@ namespace motmXamarin
 
         //}
 
-         void OnSelection(object sender, ItemTappedEventArgs e)
+
+        //changed method so it checks the Team count before deciding which page to navigate to. In case there are more than 1 team
+         async void OnSelection(object sender, ItemTappedEventArgs e)
         {
             var club = (ListView)sender;
             var myJob = (club.SelectedItem as Club);
 
-            Navigation.PushAsync(new ClubPage(myJob.clubId));
+            //Deselect the element so it goes back to it's orignial state
+            ((ListView)sender).SelectedItem = null;
+
+            this.IsBusy = true;
+
+            try
+            {
+
+                var sportCollection = await manager.GetSingleClub(myJob.clubId);
+                GC.KeepAlive(sportCollection);
+
+                var newClub = sportCollection as SingleClub;
+
+
+
+                int teamCount = sportCollection.teams.Count();
+                if (teamCount == 1)
+                {
+                    await Navigation.PushAsync(new TeamPage());
+                }
+                else{
+                    await Navigation.PushAsync(new ClubPage(sportCollection));
+                }
+
+
+            }
+            finally
+            {
+                this.IsBusy = false;
+            }
+
+
             //Navigation.PushAsync(new ClubPage());
 
             //if (e.Item == null)
@@ -88,7 +121,7 @@ namespace motmXamarin
             //    return; //ItemSelected is called on deselection, which results in SelectedItem being set to null
             //}
             //DisplayAlert("Item Selected", e.Item.ToString(), "Ok");
-            ////((ListView)sender).SelectedItem = null; //uncomment line if you want to disable the visual selection state.
+            //((ListView)sender).SelectedItem = null; //uncomment line if you want to disable the visual selection state.
         }
 
 
