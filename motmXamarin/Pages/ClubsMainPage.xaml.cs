@@ -94,13 +94,11 @@ namespace motmXamarin
                 GC.KeepAlive(sportCollection);
 
                 var newClub = sportCollection as SingleClub;
-
-
-
+            
                 int teamCount = sportCollection.teams.Count();
                 if (teamCount == 1)
                 {
-                    await Navigation.PushAsync(new TeamPage());
+					await Navigation.PushAsync(new TeamPage(sportCollection, teamId:0));
                 }
                 else{
                     await Navigation.PushAsync(new ClubPage(sportCollection));
@@ -112,19 +110,8 @@ namespace motmXamarin
             {
                 this.IsBusy = false;
             }
-
-
-            //Navigation.PushAsync(new ClubPage());
-
-            //if (e.Item == null)
-            //{
-            //    return; //ItemSelected is called on deselection, which results in SelectedItem being set to null
-            //}
-            //DisplayAlert("Item Selected", e.Item.ToString(), "Ok");
-            //((ListView)sender).SelectedItem = null; //uncomment line if you want to disable the visual selection state.
+         
         }
-
-
 
 
     }

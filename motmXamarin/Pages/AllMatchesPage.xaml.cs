@@ -16,6 +16,8 @@ namespace motmXamarin.Pages
             int Items = 2;
             int RowHeight = FavMatches.RowHeight;
             FavMatches.HeightRequest = Items * RowHeight; 
+
+            //Function to swap matches in header?
         }
     }
 }

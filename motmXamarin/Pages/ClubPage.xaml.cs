@@ -11,92 +11,84 @@ using Xamarin.Forms;
 
 namespace motmXamarin
 {
-    public partial class ClubPage : ContentPage
-    {
-        //readonly int singleClubId; 
-        readonly DataManager manager = new DataManager();
-        readonly IList<Team> teams = new ObservableCollection<Team>();
-        readonly ObservableCollection<SingleClub> thisClub = new ObservableCollection<SingleClub>();
+	public partial class ClubPage : ContentPage
+	{
+		//readonly int singleClubId; 
+		readonly DataManager manager = new DataManager();
+		readonly IList<Team> teams = new ObservableCollection<Team>();
+		readonly ObservableCollection<SingleClub> thisClub = new ObservableCollection<SingleClub>();
 
-        object newClub;
+		object newClub;
 
-        //public ClubPage()
-        //{
-        //    InitializeComponent();
-        //}
+		//public ClubPage()
+		//{
+		//    InitializeComponent();
+		//}
 
-        public ClubPage(SingleClub clubObject)
-        {
-            InitializeComponent();
+		public ClubPage(SingleClub clubObject)
+		{
+			InitializeComponent();
 
-            newClub = clubObject as SingleClub;
-            Teams.ItemsSource = teams;
-            //singleClubId = clubId;
-            Club.BindingContext = newClub;
+			newClub = clubObject as SingleClub;
+			Teams.ItemsSource = teams;
+			//singleClubId = clubId;
+			Club.BindingContext = newClub;
 
-            //When selectedItem is set to null it Fires again. Still highlighting the view when tapped
-            Teams.ItemTapped += (object sender, ItemTappedEventArgs e) => {
-                // don't do anything if we just de-selected the row
-                if (e.Item == null) return;
-                // do something with e.SelectedItem
-                ((ListView)sender).SelectedItem = null; // de-select the row
-                Navigation.PushAsync(new TeamPage());
-            };
+			string umbracoUrl = "http://motmv2.azurewebsites.net/";
+			clubLogo.Source = (clubObject.clubPic != "") ? umbracoUrl + clubObject.clubPic : "blogo.png";
+			clubStadium.Source = (clubObject.stadiumPic != "") ? umbracoUrl + clubObject.stadiumPic : "stadium.png";
+                        
 
-        }
+		}
 
 
 
-        protected async override void OnAppearing()
-        {
-            base.OnAppearing();
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
 
-            var singleClub = newClub as SingleClub;
-            foreach (Team team in singleClub.teams)
-                {
-                if (teams.All(t => t.teamId != team.teamId))
-                    teams.Add(team);
-                }
+			var singleClub = newClub as SingleClub;
+			foreach (Team team in singleClub.teams)
+			{
+				if (teams.All(t => t.teamId != team.teamId))
+					teams.Add(team);
+			}
 
-            //// Turn on network indicator
-            //this.IsBusy = true;
+		}
 
-            //try
-            //{
+		//public void OnSelection(object sender, EventArgs e)
+		//{
+		//	//var teamObj = e.SelectedItem;
+		//	//var team = teamObj as Team;
+		//	//int teamId = int.Parse(team.teamId);
+		//	//var teamObj = (ListView)sender;
+		//	//var team = teamObj.SelectedItem as Team;
+		//	//int theTeamId = team.teamId;
+		//	//var club = (ListView)sender;
+		//	//var myJob = (club.SelectedItem as SingleClub);
+		//	var club = newClub as SingleClub;
 
-            //    var sportCollection = await manager.GetSingleClub(singleClubId);
-            //    GC.KeepAlive(sportCollection);
-
-            //    var club = sportCollection as SingleClub;
-            //    newClub = sportCollection;
-                    
-            //    thisClub.Add(sportCollection);
-
-
-            //    foreach(Team team in sportCollection.teams)
-            //    {
-            //        teams.Add(team);
-            //    }
+		//	((ListView)sender).SelectedItem = null; // de-select the row
+		//	Navigation.PushAsync(new TeamPage(club));
 
 
-               
-            //    //ClubName.Text = club.clubName;
 
-            //    Club.BindingContext = newClub;
+		//}
 
-            //}
-            //finally
-            //{
-            //    this.IsBusy = false;
-            //}
+		public void GetTeamItem(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+		{
+			if (((ListView)sender).SelectedItem == null)
+                return;
+			
+			var teamObj = e.SelectedItem;
+			var team = teamObj as Team;
+			int teamId = team.teamId;
 
-        }
+			var club = newClub as SingleClub;
 
+            ((ListView)sender).SelectedItem = null; // de-select the row
+			Navigation.PushAsync(new TeamPage(club, teamId));
 
-        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
-        {
-            
-           // Navigation.PushAsync(new TeamPage());
-        }
-    }
+		}
+	}
 }
