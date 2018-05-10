@@ -16,7 +16,11 @@ namespace motmXamarin.Pages
 		SingleClub theClub = new SingleClub();
 		readonly IList<Player> players = new ObservableCollection<Player>();
 
-        
+		public MatchPage()
+		{
+			InitializeComponent();
+		}
+
 
 		public MatchPage(SingleClub club, Match match)
         {
@@ -32,6 +36,11 @@ namespace motmXamarin.Pages
 			clubStadium.Source = (theClub.stadiumPic != "") ? umbracoUrl + theClub.stadiumPic : "stadium.png";
 
 			PlayerList.ItemsSource = players;
+
+			if (theClub.Sponsor.ToString() == "")
+				sponsorName.Text = "NONE";
+			else
+				sponsorName.Text = theClub.Sponsor.ToString();
                      
         }
 
@@ -43,5 +52,24 @@ namespace motmXamarin.Pages
 					players.Add(player);
             }
         }
+        
+		async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+		{
+			if (((ListView)sender).SelectedItem == null)
+                return;
+			
+			var player = e.SelectedItem as Player;
+			((ListView)sender).SelectedItem = null; // de-select the row
+
+			var answer = await DisplayAlert("Confirm?", "Vælge " + player.playerName + " som MOTM", "Yes", "No");
+            if(answer == true)
+			{
+				ChoosePlayer.IsVisible = false;
+				SponsorAd.IsVisible = false;
+				ThxForVoting.IsVisible = true;
+			}
+   
+            
+		}
     }
 }

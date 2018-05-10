@@ -6,7 +6,7 @@
     <ContentPage.Content>
 
         <StackLayout>
-             <Grid x:Name="Club" RowSpacing="0">
+             <Grid x:Name="Club" RowSpacing="0" VerticalOptions="Start">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="175"/>
                                     <RowDefinition Height="50"/>
@@ -32,7 +32,7 @@
                     <Label x:Name="ClubName" Text="Vs"
                            TextColor="White" FontAttributes="Bold"/>
                     <Label Text="{Binding clubName}" Margin="10,0"
-                           TextColor="White" />
+                           TextColor="White" LineBreakMode="WordWrap"/>
                 </StackLayout>
                     
                 </StackLayout>
@@ -57,9 +57,10 @@
                          Orientation="Vertical" Spacing="0">
                 
                 <ScrollView >
-                <StackLayout VerticalOptions="Start" >
+                <StackLayout VerticalOptions="StartAndExpand" >
                     <ListView SeparatorVisibility="None" x:Name="PlayerList"
-                              Margin="0" RowHeight="40" IsVisible="true">
+                              Margin="0" RowHeight="40" IsVisible="true"
+                              ItemSelected="Handle_ItemSelected">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -90,11 +91,11 @@
                 </StackLayout>
     <!--   End of Match has Finished            -->
                 
-            <Frame HasShadow="false" BackgroundColor="#85D093" CornerRadius="0" 
-                   VerticalOptions="End" Margin="0" x:Name="SponsorAd" IsVisible="true">
+            <Frame HasShadow="false" BackgroundColor="#85D093" CornerRadius="0"
+                   VerticalOptions="EndAndExpand" Margin="0" x:Name="SponsorAd" IsVisible="true">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="End">
                     <Label Text="Sponsoreret af" TextColor="White"/>
-                    <Label Text="Icon" />
+                    <Label x:Name="sponsorName" Text="Icon" />
                 </StackLayout>
             </Frame>
                 
