@@ -1,15 +1,27 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Xamarin.Forms;
 
 namespace motmXamarin
 {
     public partial class App : Application
     {
-        public App()
+		public static UserRepository UserRepo { get; private set; }
+
+        public App(string dbPath)
         {
             InitializeComponent();
 
-            MainPage = new MotmMasterPage();
+            UserRepo = new UserRepository(dbPath);
+
+			MainPage = new motmXamarin.MainPage();
         }
+
+
+        
 
         protected override void OnStart()
         {
