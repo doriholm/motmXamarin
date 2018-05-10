@@ -18,20 +18,20 @@
 
                  <Image Grid.Column="0" Grid.RowSpan="2" Grid.Row="0"
                        Source="stadium.png" HeightRequest="120" 
-                       Aspect="AspectFill"/>
+                       Aspect="AspectFill" x:Name="clubStadium"/>
                 <Label Grid.Column="0" Grid.RowSpan="2" Grid.Row="0"
                             BackgroundColor="Black" Opacity=".25"/>
                 
                 <StackLayout Orientation="Horizontal" Grid.Column="0"  Grid.Row="0" 
                              HorizontalOptions="Center" Padding="20, 0"
                              VerticalOptions="Center">
-                   <Image  Source="blogo.png" HeightRequest="80"
+                   <Image  Source="blogo.png" HeightRequest="80" x:Name="clubLogo"
                        Margin="10" HorizontalOptions="Center"
                        VerticalOptions="Center"/>
                  <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                     <Label x:Name="ClubName" Text="Vs"
                            TextColor="White" FontAttributes="Bold"/>
-                    <Label Text="Opponent" Margin="10,0"
+                    <Label Text="{Binding clubName}" Margin="10,0"
                            TextColor="White" />
                 </StackLayout>
                     
@@ -53,13 +53,13 @@
 
             
 <!--    List of Players to choose for MOTM and Sponsor      -->
-            <StackLayout x:Name="ChoosePlayer" IsVisible="false" VerticalOptions="FillAndExpand"
+            <StackLayout x:Name="ChoosePlayer" IsVisible="true" VerticalOptions="FillAndExpand"
                          Orientation="Vertical" Spacing="0">
                 
                 <ScrollView >
                 <StackLayout VerticalOptions="Start" >
-                    <ListView SeparatorVisibility="None" ItemsSource="343445776" x:Name="PlayerList"
-                              Margin="0" RowHeight="40" IsVisible="false">
+                    <ListView SeparatorVisibility="None" x:Name="PlayerList"
+                              Margin="0" RowHeight="40" IsVisible="true">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -68,7 +68,7 @@
                                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" 
                                                      Margin="10, 0">
                                             <Label Text="Nr.1" Margin="0" VerticalTextAlignment="End"/>
-                                            <Label Text="PlayerName" Margin="0"/>
+                                            <Label Text="{Binding playerName}" Margin="0"/>
                                         </StackLayout>
                                         <Label BackgroundColor="Silver" HeightRequest="2" Margin="0"/>
                                     </StackLayout>
@@ -102,7 +102,7 @@
 <!--   End of List of Players to choose for MOTM and sponsor     -->
 
 <!--   Thanks for Voting            -->
-            <StackLayout Orientation="Vertical" Spacing="20" x:Name="ThxForVoting" IsVisible="true"
+            <StackLayout Orientation="Vertical" Spacing="20" x:Name="ThxForVoting" IsVisible="false"
                          HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
                 <Label Text="Thank you for voting" HorizontalTextAlignment="Center"
                        FontSize="Large" FontAttributes="Bold"/>

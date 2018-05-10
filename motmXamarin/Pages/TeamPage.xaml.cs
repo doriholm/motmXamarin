@@ -19,6 +19,7 @@ namespace motmXamarin.Pages
         {
             InitializeComponent();
             
+            //use teamId to find the right team and get team matches
 			Team findTeam = new Team();
 			if(teamId == 0)
 			{
@@ -28,7 +29,6 @@ namespace motmXamarin.Pages
 			{
 				findTeam = clubObject.teams.Find(t => t.teamId == teamId);
 			}
-
 			GetTeamMatches(findTeam);
 
 			var theTeamId = teamId;
@@ -39,12 +39,21 @@ namespace motmXamarin.Pages
             clubLogo.Source = (clubObject.clubPic != "") ? umbracoUrl + clubObject.clubPic : "blogo.png";
             clubStadium.Source = (clubObject.stadiumPic != "") ? umbracoUrl + clubObject.stadiumPic : "stadium.png";
 
-            NextMatches.ItemsSource = "nae";
+			NextMatches.ItemsSource = matches;
         }
 
         public async void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            await Navigation.PushAsync(new MatchPage());
+			if (((ListView)sender).SelectedItem == null)
+                return;
+
+            var matchObj = e.SelectedItem;
+			var match = matchObj as Match;
+            var club = newClub as SingleClub;
+
+            ((ListView)sender).SelectedItem = null; // de-select the row
+
+			await Navigation.PushAsync(new MatchPage(club, match));
         }
 
 		public void GetTeamMatches(Team team)

@@ -22,6 +22,9 @@ namespace motmXamarin
             };
 
             IsPresented = false;
+            #if __IOS__
+			IsGestureEnabled = false;
+            #endif
         }
 
         //

@@ -110,7 +110,7 @@
                                     
                     <Frame CornerRadius="5" BackgroundColor="White" 
                            Padding="0" HasShadow="false">
-                        <StackLayout x:Name="LastMatch" Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal">
                             <Image  Source="blogo.png"
                                     Margin="10" HorizontalOptions="Center"
                                     VerticalOptions="Center"/>
@@ -126,7 +126,7 @@
                         </Grid.ColumnDefinitions> 
                           <Label Grid.Row="0" Grid.Column="0" Text="TeamName" 
                                  HorizontalOptions="Fill" FontAttributes="Bold"/>
-                          <Label Grid.Row="1" Grid.Column="0" Text="Vs OpponentName" FontSize="12"
+                          <Label Grid.Row="1" Grid.Column="0" Text="{Binding matchName}" FontSize="12"
                                  />
                         
                           <Label Grid.Row="0" Grid.Column="1" FontAttributes="Bold"
