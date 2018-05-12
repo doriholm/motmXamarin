@@ -21,7 +21,12 @@ namespace motmXamarin.Data
 	[Table("favClubs")]
     public class FavClubs
     {
-        public int ClubId { get; set; }
+		public int clubId { set; get; }
+		public string clubName { set; get; }
+        public string clubPic { set; get; }
+        public string stadiumPic { set; get; }
+        public string Sponsor { set; get; }
+        public string Homecity { get; set; }
     }
 
     [Table("userToken")]

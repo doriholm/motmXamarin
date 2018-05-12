@@ -167,6 +167,8 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable\blogo.png" />
     <AndroidResource Include="Resources\drawable\stadium.png" />
+    <AndroidResource Include="Resources\drawable\blackStar256.png" />
+    <AndroidResource Include="Resources\drawable\goldStar256.png" />
   </ItemGroup>
   <Import Project="..\motmXamarin\motmXamarin.projitems" Label="Shared" Condition="Exists('..\motmXamarin\motmXamarin.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

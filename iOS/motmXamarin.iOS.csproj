@@ -145,6 +145,8 @@
     <BundleResource Include="Resources\hamburger.png" />
     <BundleResource Include="Resources\stadium.png" />
     <BundleResource Include="Resources\blogo.png" />
+    <BundleResource Include="Resources\blackStar256.png" />
+    <BundleResource Include="Resources\goldStar256.png" />
   </ItemGroup>
   <Import Project="..\motmXamarin\motmXamarin.projitems" Label="Shared" Condition="Exists('..\motmXamarin\motmXamarin.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

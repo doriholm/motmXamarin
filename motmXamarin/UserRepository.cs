@@ -16,6 +16,8 @@ namespace motmXamarin
 			conn = new SQLiteConnection(dbPath);
 			conn.CreateTable<UserSettings>();
 			conn.CreateTable<FavSports>();
+			conn.CreateTable<FavClubs>();
+            
         }
         
 		public void AddSports(List<int> sportIds)
@@ -36,6 +38,42 @@ namespace motmXamarin
 				}
 			}
 		}
+
+		public void AddFavClub(Club club)
+        {
+            int result = 0;
+         
+            try
+            {               
+				result = conn.Insert(new FavClubs {
+					clubId = club.clubId,
+					clubPic = club.clubPic,
+					clubName = club.clubName,
+					Homecity = club.Homecity,
+					stadiumPic = club.stadiumPic,
+					Sponsor = club.Sponsor
+				});
+                
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = ex.Message;
+            }
+        }
+
+		public void RemoveFavClub(int clubId)
+        {
+            int result = 0;
+
+            try
+            {
+				conn.Table<FavClubs>().Delete(c => c.clubId == clubId);                
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = ex.Message;
+            }
+        }
 
 		public void AddNewPerson(string name, string token)
         {
@@ -76,6 +114,7 @@ namespace motmXamarin
         {
 			conn.DeleteAll<UserSettings>();
 			conn.DeleteAll<FavSports>();
+			conn.DeleteAll<FavClubs>();
         }
 
 		public UserSettings GetUserSettings()
@@ -90,6 +129,22 @@ namespace motmXamarin
 			}
 			return new UserSettings();
 		}
+
+		public List<FavClubs> GetFavClubs()
+        {
+
+            try
+            {
+				return conn.Table<FavClubs>().ToList();
+
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = ex.Message;
+            }
+			return new List<FavClubs>();
+        }
+
 
 		public List<UserSettings> GetAllPeople()
         {

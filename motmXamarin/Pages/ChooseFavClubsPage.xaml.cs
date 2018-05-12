@@ -23,17 +23,21 @@ namespace motmXamarin.Pages
 
 		void Search_Clubs(object sender, System.EventArgs e)
 		{
-			clubsFromSearch.Clear();
-			string searchStringLower = SearchEntry.Text.ToLower();
-			foreach (Club club in clubs)
-            {
-				if (club.clubName.ToLower().Contains(searchStringLower))
-                    clubsFromSearch.Add(club);
-            }
-			ClubsList.ItemsSource = clubsFromSearch;
+			if(SearchEntry.Text != null)
+			{
+				clubsFromSearch.Clear();
+                string searchStringLower = SearchEntry.Text.ToLower();
+                foreach (Club club in clubs)
+                {
+                    if (club.clubName.ToLower().Contains(searchStringLower))
+                        clubsFromSearch.Add(club);
+                }
+                ClubsList.ItemsSource = clubsFromSearch;
+			}
+
 		}
 
-		void SelectFavClub(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+		void SelectFavClub(object sender, SelectedItemChangedEventArgs e)
 		{
 			if (((ListView)sender).SelectedItem == null)
                 return;
@@ -41,14 +45,41 @@ namespace motmXamarin.Pages
 			var club = (e.SelectedItem as Club);
             ((ListView)sender).SelectedItem = null;
 
-			if (favClubs.All(c => c.clubId != club.clubId))
-				favClubs.Add(club);
+			App.UserRepo.AddFavClub(club);
 
-			//if(!favClubsIdContains(clubId)){
-			//	favClubsId.Add(clubId);
-			//}
+
+			//if (favClubs.All(c => c.clubId != club.clubId))
+			//favClubs.Add(club);
+
+
 			//SetListViewHeight();
+			var GetFavClubs = App.UserRepo.GetFavClubs();
+			foreach(FavClubs favClub in GetFavClubs)
+			{
+				if (favClubs.All(c => c.clubId != favClub.clubId))
+				{
+					Club newClub = new Club();
+					newClub.clubId = favClub.clubId;
+                    newClub.clubName = favClub.clubName;
+                    favClubs.Add(newClub);
+				}
+
+			}
+
 			FavClubsList.ItemsSource = favClubs;
+		}
+
+		void RemoveFavClub(object sender, SelectedItemChangedEventArgs e)
+		{
+			if (((ListView)sender).SelectedItem == null)
+                return;
+
+            var club = (e.SelectedItem as Club);
+            ((ListView)sender).SelectedItem = null;
+
+			favClubs.Remove(club);
+			App.UserRepo.RemoveFavClub(club.clubId);
+
 		}
 
         public void SetListViewHeight()
