@@ -16,10 +16,7 @@ namespace motmXamarin.Pages
 		SingleClub theClub = new SingleClub();
 		readonly IList<Player> players = new ObservableCollection<Player>();
 
-		public MatchPage()
-		{
-			InitializeComponent();
-		}
+
 
 
 		public MatchPage(SingleClub club, Match match)

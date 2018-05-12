@@ -15,7 +15,27 @@ namespace motmXamarin
         {
 			conn = new SQLiteConnection(dbPath);
 			conn.CreateTable<UserSettings>();
+			conn.CreateTable<FavSports>();
         }
+        
+		public void AddSports(List<int> sportIds)
+		{
+			if (sportIds != null)
+			{
+				try
+				{
+					foreach (int Id in sportIds)
+					{
+						conn.Insert(new FavSports { SportId = Id });
+					}
+					var Test = conn.Table<FavSports>().ToList();
+				}
+				catch (Exception ex)
+				{
+					StatusMessage = ex.Message;
+				}
+			}
+		}
 
 		public void AddNewPerson(string name, string token)
         {
@@ -28,7 +48,6 @@ namespace motmXamarin
 
                 
 				result = conn.Insert(new UserSettings { Name = name, PhoneToken = token });
-
                 StatusMessage = string.Format("{0} record(s) added [Name: {1})", result, name);
             }
             catch (Exception ex)
@@ -37,17 +56,39 @@ namespace motmXamarin
             }
         }
 
-		public void GetUserSettings()
+		public string CreateUser()
+        {
+			string result;
+            try
+            {				            
+                conn.Insert(new UserSettings { Name = "User", PhoneToken = "TokenString" });
+				result = "Success";
+            }
+            catch (Exception ex)
+            {
+				result = ex.Message;
+            }
+			return result;
+        }
+
+        //Delete data for testing
+		public void DeleteTable()
+        {
+			conn.DeleteAll<UserSettings>();
+			conn.DeleteAll<FavSports>();
+        }
+
+		public UserSettings GetUserSettings()
 		{
 			
 			try{
-				var result = conn.Table<UserSettings>().Where(u => u.Name == "user2").FirstOrDefault();
-
-
+				return conn.Table<UserSettings>().Where(u => u.Name == "User").FirstOrDefault();
+                
 			}
 			catch (Exception ex){
 				StatusMessage = string.Format("Failed to fetch user. Error: {0}", ex.Message);
 			}
+			return new UserSettings();
 		}
 
 		public List<UserSettings> GetAllPeople()

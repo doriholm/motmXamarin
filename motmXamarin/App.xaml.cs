@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using motmXamarin.Data;
 
 using Xamarin.Forms;
 
@@ -10,6 +12,7 @@ namespace motmXamarin
     public partial class App : Application
     {
 		public static UserRepository UserRepo { get; private set; }
+		public IList<Sport> sportsIds = new ObservableCollection<Sport>();
 
         public App(string dbPath)
         {
@@ -17,7 +20,21 @@ namespace motmXamarin
 
             UserRepo = new UserRepository(dbPath);
 
-			MainPage = new motmXamarin.MainPage();
+            //Delete data for testing
+			UserRepo.DeleteTable();           
+            
+			if(UserRepo.GetUserSettings() == null)
+			{
+				//Send to Pick fav clubs and create new user table
+				UserRepo.CreateUser();
+				MainPage = new motmXamarin.Pages.ChooseFavClubsPage();
+
+			}
+			else
+			{
+			    //UserRepo.CreateUser();
+				MainPage = new motmXamarin.MotmMasterPage();
+			}
         }
 
 

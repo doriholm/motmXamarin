@@ -64,16 +64,7 @@ namespace motmXamarin
 
         }
 
-        //public void Label_OnTapped(object sender, EventArgs e)
-        //{
-        //    var obj = (Grid)sender;
-        //    int theClubId = int.Parse(obj.ClassId);
-
-        //    //var obj = ((TappedEventArgs)e).Parameter;
-        //    //WorkIt.Text = obj.ClassId;
-        //    Navigation.PushAsync(new ClubPage(theClubId));
-
-        //}
+        
 
 
         //changed method so it checks the Team count before deciding which page to navigate to. In case there are more than 1 team
