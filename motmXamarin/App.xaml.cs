@@ -12,7 +12,7 @@ namespace motmXamarin
     public partial class App : Application
     {
 		public static UserRepository UserRepo { get; private set; }
-		public IList<Sport> sportsIds = new ObservableCollection<Sport>();
+		public List<int> sportsIds = new List<int>();
 
         public App(string dbPath)
         {
@@ -21,20 +21,14 @@ namespace motmXamarin
             UserRepo = new UserRepository(dbPath);
 
             //Delete data for testing
-			UserRepo.DeleteTable();           
-            
-			if(UserRepo.GetUserSettings() == null)
-			{
-				//Send to Pick fav clubs and create new user table
-				UserRepo.CreateUser();
-				MainPage = new motmXamarin.Pages.ChooseFavClubsPage();
+			//UserRepo.DeleteTable();
 
-			}
-			else
-			{
-			    //UserRepo.CreateUser();
-				MainPage = new motmXamarin.MotmMasterPage();
-			}
+            //insert sports into the global Sports list
+			foreach (FavSports sport in UserRepo.GetSports())
+				sportsIds.Add(sport.SportId);
+            
+            MainPage = new motmXamarin.MotmMasterPage();
+
         }
 
 

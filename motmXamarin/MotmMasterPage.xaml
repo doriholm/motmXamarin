@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-                  x:Class="motmXamarin.MotmMasterPage"
-                  BackgroundColor="Red" 
+                  x:Class="motmXamarin.MotmMasterPage"                   
                   >
      <MasterDetailPage.Master >
-        <ContentPage Padding="0,40,0,0" BackgroundColor="Silver" Title="☰ Menu">
+        <ContentPage Padding="0,40,0,0" BackgroundColor="#454545" Title="☰ Menu">
             <ContentPage.Content>
-                <StackLayout Spacing="30">
-                    <Label Text="Master Page" Margin="5,30,5,5" FontAttributes="Bold"/>
+                <StackLayout>
+                <StackLayout Spacing="10" x:Name="sportsLayout">
+                    <Label Text=" Sportsgrene" Margin="5,30,5,5" TextColor="White" 
+                           FontAttributes="Bold" FontSize="20"
+                           HorizontalTextAlignment="Center"/>
+            <!--     Add labels from code behind               -->
+                </StackLayout>
                     <Button Text="All Clubs" Clicked="ShowAllClubsPage"/>
                     <Button Text="All Matches" Clicked="ShowAllMatchesPage"/>
-                    <Button Text="Football" 
-                            BackgroundColor="Gray"  
-                            ClassId="1084"
-                            Clicked="SportCheckbox"
-                            x:Name="FootballBtn"/>
-                    <Button Text="Handball" 
-                            BackgroundColor="Gray"  
-                            ClassId="1093"
-                            Clicked="SportCheckbox"
-                            x:Name="HandballBtn"/>
-                </StackLayout>
+                    </StackLayout>
             </ContentPage.Content>
         </ContentPage>
     </MasterDetailPage.Master>

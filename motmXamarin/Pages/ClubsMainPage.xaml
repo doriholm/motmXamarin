@@ -32,18 +32,18 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 
-                <Image Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
-                       Source="stadium.png" HeightRequest="150" 
+                <Image Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" x:Name="ClubStadium"
+                       Source="{Binding stadiumPic}" HeightRequest="150" 
                        Aspect="AspectFill"/>
                 <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
                        BackgroundColor="Black" Opacity=".25"/>
-                <Image Grid.Column="0" Source="blogo.png"
+                <Image Grid.Column="0" Source="{Binding clubPic}" x:Name="ClubLogo"
                        Margin="20" HorizontalOptions="Center"
                        VerticalOptions="Center"/>
                  <StackLayout Grid.Column="1"  Grid.Row="0" VerticalOptions="Center">
                     <Label Text="{Binding clubName}"
                            TextColor="White" FontAttributes="Bold"/>
-                    <Label Text="Herning, Denmark"
+                    <Label Text="{Binding Homecity}"
                            TextColor="White" />
                 </StackLayout>
                              <!-- <Grid.GestureRecognizers>

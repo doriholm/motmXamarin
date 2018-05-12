@@ -7,5 +7,6 @@ namespace motmXamarin.Data
     {
         public int sportId { get; set; }
         public string sportName { get; set; }
+		public bool checkBox { get; set; }
     }
 }

@@ -29,13 +29,14 @@ namespace motmXamarin
         public ClubsMainPage(List<int> sportIdsList)
         {
             InitializeComponent();
-            BindingContext = clubs;
+            
             sportIds = sportIdsList;
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+			string umbracoUrl = "http://motmv2.azurewebsites.net";
 
             // Turn on network indicator
             this.IsBusy = true;
@@ -56,11 +57,17 @@ namespace motmXamarin
                     if (clubs.All(c => c.clubId != club.clubId))
                         clubs.Add(club);
                 }
+				foreach(Club club in clubs)
+				{					
+					club.clubPic = (club.clubPic != "") ? umbracoUrl + club.clubPic : "blogo.png";
+					club.stadiumPic = (club.stadiumPic != "") ? umbracoUrl + club.stadiumPic : "stadium.png";
+				}
             }
             finally
             {
                 this.IsBusy = false;
             }
+			BindingContext = clubs;
 
         }
 

@@ -10,16 +10,32 @@ namespace motmXamarin.Pages
     public partial class ChooseFavClubsPage : ContentPage
     {
 		
+		readonly List<int> sports = new List<int>();
 		readonly IList<Club> clubs = new ObservableCollection<Club>();
 		readonly IList<Club> clubsFromSearch = new ObservableCollection<Club>();
 		readonly IList<Club> favClubs = new ObservableCollection<Club>();
+
 		readonly DataManager manager = new DataManager();
 
         public ChooseFavClubsPage()
         {
             InitializeComponent();
+         
+			TapGestureRecognizer tapContinueBtn = new TapGestureRecognizer();
+            tapContinueBtn.Tapped += ContinueBtnTapped;
             
+			continueBtn.GestureRecognizers.Add(tapContinueBtn);
+        
         }
+
+
+
+	void ContinueBtnTapped(object sender, System.EventArgs e)
+    {
+			Navigation.PushAsync(new motmXamarin.ClubsMainPage(sports));
+			Navigation.RemovePage(this);
+
+    }
 
 		void Search_Clubs(object sender, System.EventArgs e)
 		{
@@ -46,11 +62,7 @@ namespace motmXamarin.Pages
             ((ListView)sender).SelectedItem = null;
 
 			App.UserRepo.AddFavClub(club);
-
-
-			//if (favClubs.All(c => c.clubId != club.clubId))
-			//favClubs.Add(club);
-
+                       
 
 			//SetListViewHeight();
 			var GetFavClubs = App.UserRepo.GetFavClubs();
@@ -82,18 +94,18 @@ namespace motmXamarin.Pages
 
 		}
 
-        public void SetListViewHeight()
-		{
-			int Items = favClubs.Count();
-			int RowHeight = FavClubsList.RowHeight;
-			FavClubsList.HeightRequest = Items * RowHeight; 
-		}
+  //      public void SetListViewHeight()
+		//{
+		//	int Items = favClubs.Count();
+		//	int RowHeight = FavClubsList.RowHeight;
+		//	FavClubsList.HeightRequest = Items * RowHeight; 
+		//}
 
 		protected async override void OnAppearing()
         {
             base.OnAppearing();
 
-			List<int> sports = new List<int>();
+
             try
             {            
 				var sportCollection = await manager.GetSports();
@@ -101,7 +113,7 @@ namespace motmXamarin.Pages
                 
 				foreach (Sport sport in sportCollection)
                 {
-                    obj.Add(sport);
+					obj.Add(sport.sportId);
 					sports.Add(sport.sportId);
                 }
             }
