@@ -34,7 +34,7 @@ namespace motmXamarin
 						globalSportIds.Add(item.SportId);
 				}
 
-				Detail = new NavigationPage(new ClubsMainPage(globalSportIds));
+				Detail = new NavigationPage(new ClubsMainPage());
             }
 
 			//getSports and create labels
@@ -102,12 +102,14 @@ namespace motmXamarin
 				int nr = int.Parse(btn.ClassId);
 				if(btn.FontAttributes == FontAttributes.Bold){
 					btn.FontAttributes = FontAttributes.None;
+					btn.TextColor = Color.FromHex("d2d1d1");
 					var findId = sportIdsList.Find(i => i == nr);
 					sportIdsList.Remove(findId);
 				}
 				else
 				{
 					btn.FontAttributes = FontAttributes.Bold;
+					btn.TextColor = Color.White;
 					sportIdsList.Add(nr);
 				}
                 
@@ -120,14 +122,15 @@ namespace motmXamarin
 				var sportLabel = new Label
 				{
 					Text = item.sportName,
-					TextColor = Color.White,
+					TextColor = Color.FromHex("d2d1d1"),
 					FontSize = 16,
 					Margin = 10,
 					ClassId = item.sportId.ToString()
 				};
 				
 				if (item.checkBox == true){
-					sportLabel.FontAttributes = FontAttributes.Bold; 
+					sportLabel.FontAttributes = FontAttributes.Bold;
+					sportLabel.TextColor = Color.White;
 				}
                 sportsLayout.Children.Add(sportLabel);
 				sportLabel.GestureRecognizers.Add(sportLabelTap);
@@ -138,16 +141,17 @@ namespace motmXamarin
 
         void ShowAllMatchesPage(object sender, System.EventArgs e)
         {
-
+			App.UserRepo.AddSports(sportIdsList);
             IsPresented = false;
             Detail = new NavigationPage(new AllMatchesPage());
         }
 
 		void ShowAllClubsPage(object sender, System.EventArgs e)
         {
-
+			App.UserRepo.AddSports(sportIdsList);
+			(Application.Current as App).sportsIds = sportIdsList;
             IsPresented = false;
-            Detail = new NavigationPage(new ClubsMainPage((Application.Current as App).sportsIds));
+            Detail = new NavigationPage(new ClubsMainPage());
         }
 
         

@@ -32,7 +32,7 @@ namespace motmXamarin.Pages
 
 	void ContinueBtnTapped(object sender, System.EventArgs e)
     {
-			Navigation.PushAsync(new motmXamarin.ClubsMainPage(sports));
+			Navigation.PushAsync(new motmXamarin.ClubsMainPage());
 			Navigation.RemovePage(this);
 
     }

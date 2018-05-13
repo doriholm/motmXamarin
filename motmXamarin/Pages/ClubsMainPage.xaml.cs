@@ -26,11 +26,11 @@ namespace motmXamarin
            
         //}
 
-        public ClubsMainPage(List<int> sportIdsList)
+        public ClubsMainPage()
         {
             InitializeComponent();
             
-            sportIds = sportIdsList;
+            
         }
 
         protected async override void OnAppearing()
@@ -44,12 +44,9 @@ namespace motmXamarin
             try
             {
                 
-                if(sportIds.Count() == 0)
-                {
-                    sportIds.Add(1084);
-                }
+				var globalSportIds = (Application.Current as App).sportsIds;
 
-                var sportCollection = await manager.GetClubs(sportIds);
+				var sportCollection = await manager.GetClubs(globalSportIds);
 
 
                 foreach (Club club in sportCollection)
