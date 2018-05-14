@@ -15,15 +15,19 @@ namespace motmXamarin.Pages
     {
 		SingleClub theClub = new SingleClub();
 		readonly IList<Player> players = new ObservableCollection<Player>();
+		readonly DataManager manager = new DataManager();
 
+		int thisMatchId;
 
 
 
 		public MatchPage(SingleClub club, Match match)
         {
             InitializeComponent();
-
+            
 			theClub = club;
+			thisMatchId = match.matchId;
+
 			GetMatchPlayers(match);
 
 			Club.BindingContext = theClub;
@@ -40,6 +44,25 @@ namespace motmXamarin.Pages
 				sponsorName.Text = theClub.Sponsor.ToString();
                      
         }
+
+		protected async override void OnAppearing()
+		{
+			base.OnAppearing();
+			var matchVotesLIst = (Application.Current as App).MatchVotes;
+
+			if(matchVotesLIst.Contains(thisMatchId))
+			{
+				ChoosePlayer.IsVisible = false;
+                SponsorAd.IsVisible = false;
+                ThxForVoting.IsVisible = true;
+			}
+			else
+			{
+				ChoosePlayer.IsVisible = true;
+                SponsorAd.IsVisible = true;
+                
+			}
+		}
 
 		public void GetMatchPlayers(Match match)
         {
@@ -58,12 +81,16 @@ namespace motmXamarin.Pages
 			var player = e.SelectedItem as Player;
 			((ListView)sender).SelectedItem = null; // de-select the row
 
-			var answer = await DisplayAlert("Confirm?", "Vælge " + player.playerName + " som MOTM", "Yes", "No");
+			var answer = await DisplayAlert("Bekræfte?", "Vælge " + player.playerName + " som MOTM", "Yes", "No");
             if(answer == true)
 			{
+				var voteResult = manager.VoteMotm(player.playerId);
+				App.UserRepo.VoteMotm(thisMatchId);
+				(Application.Current as App).MatchVotes.Add(thisMatchId);
 				ChoosePlayer.IsVisible = false;
 				SponsorAd.IsVisible = false;
 				ThxForVoting.IsVisible = true;
+
 			}
    
             

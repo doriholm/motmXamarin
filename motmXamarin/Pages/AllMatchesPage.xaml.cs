@@ -19,5 +19,13 @@ namespace motmXamarin.Pages
 
             //Function to swap matches in header?
         }
+
+        //get fav clubs id
+        //get fav sports id and save in local in object
+        //get allmatches api
+        //sort matches 
+        // - finished
+        // - fav club matches - one match goes to the main object
+        // - regular matches
     }
 }

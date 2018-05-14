@@ -127,7 +127,7 @@ namespace motmXamarin.Pages
 			App.UserRepo.AddSports(sports);
 			
 
-			var test = (Application.Current as App).sportsIds;
+
         }
 
 		public async void GetClubs(List<int> sportIds)

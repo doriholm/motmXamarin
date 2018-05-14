@@ -35,5 +35,10 @@ namespace motmXamarin.Data
 		public string UmbracoUserToken { get; set; }
 	}
 
+	[Table("matchVotes")]
+    public class MatchVotes
+    {
+        public int matchId { get; set; }
+    }
 }
 

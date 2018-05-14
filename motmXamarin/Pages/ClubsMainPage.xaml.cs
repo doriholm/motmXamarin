@@ -20,12 +20,7 @@ namespace motmXamarin
         //If user has saved sportIds locally get that
         readonly List<int> sportIds = new List<int>();
 
-        //public ClubsMainPage()
-        //{
-        //    InitializeComponent();
-           
-        //}
-
+        
         public ClubsMainPage()
         {
             InitializeComponent();

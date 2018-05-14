@@ -17,6 +17,7 @@ namespace motmXamarin
 			conn.CreateTable<UserSettings>();
 			conn.CreateTable<FavSports>();
 			conn.CreateTable<FavClubs>();
+			conn.CreateTable<MatchVotes>();
             
         }
         
@@ -78,7 +79,20 @@ namespace motmXamarin
                 StatusMessage = ex.Message;
             }
         }
-
+        
+        public int VoteMotm(int matchId)
+		{
+			int result = 0;
+            try
+            {
+				result = conn.Insert(new MatchVotes { matchId = matchId });                
+            }
+            catch (Exception ex)
+            {
+				return result;
+            }
+            return result;
+		}
 
 
 		public string CreateUser()
@@ -103,6 +117,7 @@ namespace motmXamarin
 			conn.DeleteAll<UserSettings>();
 			conn.DeleteAll<FavSports>();
 			conn.DeleteAll<FavClubs>();
+			conn.DeleteAll<MatchVotes>();
         }
 
 
@@ -154,7 +169,20 @@ namespace motmXamarin
 			return new List<FavSports>();
         }
 
+		public List<MatchVotes> GetMatchVotes()
+        {
 
+            try
+            {
+				return conn.Table<MatchVotes>().ToList();
+
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = ex.Message;
+            }
+			return new List<MatchVotes>();
+        }
 
     }
 }

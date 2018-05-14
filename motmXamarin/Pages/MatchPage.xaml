@@ -53,7 +53,7 @@
 
             
 <!--    List of Players to choose for MOTM and Sponsor      -->
-            <StackLayout x:Name="ChoosePlayer" IsVisible="true" VerticalOptions="FillAndExpand"
+            <StackLayout x:Name="ChoosePlayer" IsVisible="false" VerticalOptions="FillAndExpand"
                          Orientation="Vertical" Spacing="0">
                 
                 <ScrollView >
@@ -92,7 +92,7 @@
     <!--   End of Match has Finished            -->
                 
             <Frame HasShadow="false" BackgroundColor="#85D093" CornerRadius="0"
-                   VerticalOptions="EndAndExpand" Margin="0" x:Name="SponsorAd" IsVisible="true">
+                   VerticalOptions="EndAndExpand" Margin="0" x:Name="SponsorAd" IsVisible="false">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="End">
                     <Label Text="Sponsoreret af" TextColor="White"/>
                     <Label x:Name="sponsorName" Text="Icon" />

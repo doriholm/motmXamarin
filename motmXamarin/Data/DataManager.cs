@@ -57,6 +57,18 @@ namespace motmXamarin.Data
 
             return JsonConvert.DeserializeObject<SingleClub>(result);
         }
+        
+        //create a voting API
+		public async Task<string> VoteMotm(int playerId)
+        {
+			string searchString = "playervote?playerid=" + playerId;
+            
+
+            HttpClient client = await GetClient();
+			string result = await client.GetStringAsync(Url + searchString);
+
+			return result;
+        }
 
     }
 }
