@@ -14,6 +14,7 @@ namespace motmXamarin
 		public static UserRepository UserRepo { get; private set; }
 		public List<int> sportsIds = new List<int>();
 		public List<int> MatchVotes = new List<int>();
+		public List<FavClubs> favClubsIds = new List<FavClubs>();
 
         public App(string dbPath)
         {
@@ -22,7 +23,7 @@ namespace motmXamarin
             UserRepo = new UserRepository(dbPath);
 
             //Delete data for testing
-			//UserRepo.DeleteTable();
+			UserRepo.DeleteTable();
 
             //insert sports into the global Sports list
 			foreach (FavSports sport in UserRepo.GetSports())
@@ -31,6 +32,10 @@ namespace motmXamarin
 			//insert matcId from MatchVotes into the global MatchVotes list
 			foreach (MatchVotes item in UserRepo.GetMatchVotes())
 				MatchVotes.Add(item.matchId);
+
+			// insert favClubs into the global Favclubs object
+			foreach (FavClubs item in UserRepo.GetFavClubs())
+				favClubsIds.Add(item);
             
             MainPage = new motmXamarin.MotmMasterPage();
 

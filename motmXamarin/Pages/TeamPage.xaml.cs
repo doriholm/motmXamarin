@@ -53,7 +53,7 @@ namespace motmXamarin.Pages
 
             ((ListView)sender).SelectedItem = null; // de-select the row
 
-			await Navigation.PushAsync(new MatchPage(club, match));
+			await Navigation.PushAsync(new MatchPage(club, match, matchFromAll:null));
         }
 
 		public void GetTeamMatches(Team team)

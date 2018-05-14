@@ -21,20 +21,53 @@ namespace motmXamarin.Pages
 
 
 
-		public MatchPage(SingleClub club, Match match)
+		public MatchPage(SingleClub club, Match match, allmatches matchFromAll)
         {
             InitializeComponent();
             
-			theClub = club;
-			thisMatchId = match.matchId;
 
-			GetMatchPlayers(match);
+            if(club == null)
+			{
+				SingleClub newClub = new SingleClub();
+				newClub.stadiumPic = matchFromAll.stadiumPic;
+				newClub.clubPic = matchFromAll.clublogo;
+				newClub.clubName = matchFromAll.clubname;
+				newClub.HomeCity = matchFromAll.HomeCity;
+
+
+				theClub = newClub;
+				thisMatchId = matchFromAll.matchId;
+				OpponentName.Text = matchFromAll.opponent;
+
+				foreach(var item in matchFromAll.info)
+				{
+					foreach (Player player in item.players)
+                    {
+                        if (players.All(m => m.playerId != player.playerId))
+                            players.Add(player);
+                    }
+				}
+
+			}
+			else
+			{
+				theClub = club;
+				thisMatchId = match.matchId;
+				OpponentName.Text = match.opponent;
+				GetMatchPlayers(match);
+
+			}
+
+
+
+
 
 			Club.BindingContext = theClub;
 
             string umbracoUrl = "http://motmv2.azurewebsites.net/";
 			clubLogo.Source = (theClub.clubPic != "") ? umbracoUrl + theClub.clubPic : "blogo.png";
 			clubStadium.Source = (theClub.stadiumPic != "") ? umbracoUrl + theClub.stadiumPic : "stadium.png";
+
 
 			PlayerList.ItemsSource = players;
 

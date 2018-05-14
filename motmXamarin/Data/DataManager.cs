@@ -58,7 +58,6 @@ namespace motmXamarin.Data
             return JsonConvert.DeserializeObject<SingleClub>(result);
         }
         
-        //create a voting API
 		public async Task<string> VoteMotm(int playerId)
         {
 			string searchString = "playervote?playerid=" + playerId;
@@ -68,6 +67,20 @@ namespace motmXamarin.Data
 			string result = await client.GetStringAsync(Url + searchString);
 
 			return result;
+        }
+
+		public async Task<IEnumerable<allmatches>> GetAllMatches(List<int> sportIds)
+        {
+			string searchString = "getmatches?";
+            foreach (int id in sportIds)
+            {
+				searchString += "sportids=" + id + "&";
+            }
+
+            HttpClient client = await GetClient();
+            string result = await client.GetStringAsync(Url + searchString);
+
+			return JsonConvert.DeserializeObject<IEnumerable<allmatches>>(result);
         }
 
     }

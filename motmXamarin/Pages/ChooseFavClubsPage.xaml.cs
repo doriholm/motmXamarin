@@ -35,6 +35,14 @@ namespace motmXamarin.Pages
 			Navigation.PushAsync(new motmXamarin.ClubsMainPage());
 			Navigation.RemovePage(this);
 
+			var globalFavclubs = (Application.Current as App).favClubsIds;
+
+			var favClubsDB = App.UserRepo.GetFavClubs();
+			foreach(FavClubs club in favClubsDB)
+			{
+				globalFavclubs.Add(club);
+			}
+
     }
 
 		void Search_Clubs(object sender, System.EventArgs e)

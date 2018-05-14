@@ -31,7 +31,7 @@
                  <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                     <Label x:Name="ClubName" Text="Vs"
                            TextColor="White" FontAttributes="Bold"/>
-                    <Label Text="{Binding clubName}" Margin="10,0"
+                    <Label Text="" Margin="10,0" x:Name="OpponentName"
                            TextColor="White" LineBreakMode="WordWrap"/>
                 </StackLayout>
                     
@@ -40,8 +40,8 @@
                 <StackLayout Orientation="Horizontal" VerticalOptions="End"
                              Grid.Column="0"  Grid.Row="1"
                              Margin="10">
-                    <Label Text="Icon" TextColor="White"/>
-                    <Label Text="Loaction" TextColor="White"/>
+                    <!--<Image Source="locationIcon.png" />-->
+                    <Label Text="{Binding HomeCity}" TextColor="White" x:Name="MatchLocation"/>
                 </StackLayout>
                  
                 <Label Grid.Row="2" x:Name="ChooseMOTM"
