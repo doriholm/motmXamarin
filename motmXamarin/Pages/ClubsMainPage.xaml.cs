@@ -79,7 +79,7 @@ namespace motmXamarin
 
             try
             {
-
+				ClubsListView.IsVisible = false;
                 var sportCollection = await manager.GetSingleClub(myJob.clubId);
                 GC.KeepAlive(sportCollection);
 
