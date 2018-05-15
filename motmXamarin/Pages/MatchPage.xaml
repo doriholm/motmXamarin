@@ -41,7 +41,7 @@
                 <StackLayout Orientation="Horizontal" VerticalOptions="End"
                              Grid.Column="0"  Grid.Row="1"
                              Margin="10">
-                    <!--<Image Source="locationIcon.png" />-->
+                    <Image Source="locationIcon.png" />
                     <Label Text="{Binding HomeCity}" TextColor="White" x:Name="MatchLocation"/>
                 </StackLayout>
                  
@@ -93,8 +93,7 @@
             <Frame HasShadow="false" BackgroundColor="#85D093" CornerRadius="0"
                    VerticalOptions="EndAndExpand" Margin="0" x:Name="SponsorAd" IsVisible="false">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                    <Label Text="Sponsoreret af" TextColor="White"/>
-                    <Label x:Name="sponsorName" Text="Icon" />
+                    <Label Text="Sponsoreret af Bones" TextColor="White"/>
                 </StackLayout>
             </Frame>
                 

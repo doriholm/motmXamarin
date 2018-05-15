@@ -25,6 +25,7 @@ namespace motmXamarin.Pages
         {
             InitializeComponent();
             
+			string umbracoUrl = "http://motmv2.azurewebsites.net/";
 
             if(club == null)
 			{
@@ -48,6 +49,9 @@ namespace motmXamarin.Pages
                     }
 				}
 
+				clubLogo.Source = (theClub.clubPic != "") ?  theClub.clubPic : "blogo.png";
+                clubStadium.Source = (theClub.stadiumPic != "") ? theClub.stadiumPic : "stadium.png";
+
 			}
 			else
 			{
@@ -55,6 +59,9 @@ namespace motmXamarin.Pages
 				thisMatchId = match.matchId;
 				OpponentName.Text = match.opponent;
 				GetMatchPlayers(match);
+
+				clubLogo.Source = (theClub.clubPic != "") ? umbracoUrl + theClub.clubPic : "blogo.png";
+                clubStadium.Source = (theClub.stadiumPic != "") ? umbracoUrl + theClub.stadiumPic : "stadium.png";
 
 			}
 
@@ -64,17 +71,12 @@ namespace motmXamarin.Pages
 
 			Club.BindingContext = theClub;
 
-            string umbracoUrl = "http://motmv2.azurewebsites.net/";
-			clubLogo.Source = (theClub.clubPic != "") ? umbracoUrl + theClub.clubPic : "blogo.png";
-			clubStadium.Source = (theClub.stadiumPic != "") ? umbracoUrl + theClub.stadiumPic : "stadium.png";
+
 
 
 			PlayerList.ItemsSource = players;
 
-			if (theClub.Sponsor.ToString() == "")
-				sponsorName.Text = "NONE";
-			else
-				sponsorName.Text = theClub.Sponsor.ToString();
+
                      
         }
 

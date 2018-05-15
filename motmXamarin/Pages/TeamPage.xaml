@@ -104,8 +104,9 @@
                 
                     <ViewCell>
                         <ViewCell.View>
-                                <Frame CornerRadius="5" BackgroundColor="White" 
-                           Padding="0" HasShadow="false">
+                                <Frame CornerRadius="5" Margin="10" 
+                        HasShadow="false" BackgroundColor="#BFB9B9" HeightRequest="70"
+                        Padding="1">
                                     
                     <Frame CornerRadius="5" BackgroundColor="White" 
                            Padding="0" HasShadow="false">
