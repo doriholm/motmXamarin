@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="motmXamarin.ClubsMainPage"
              Title="Man Of The Match" x:Name="ThePage">
-    
+    <ContentPage.Content>
+    <ScrollView>
    <Grid>
 
 
@@ -55,10 +56,9 @@
                     </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
 
-
-       
 
   </Grid>
+        </ScrollView>
+        </ContentPage.Content>
 </ContentPage>

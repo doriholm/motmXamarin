@@ -23,7 +23,7 @@ namespace motmXamarin
             UserRepo = new UserRepository(dbPath);
 
             // Delete data for testing
-			//UserRepo.DeleteTable();
+			UserRepo.DeleteTable();
 
             //insert sports into the global Sports list
 			foreach (FavSports sport in UserRepo.GetSports())

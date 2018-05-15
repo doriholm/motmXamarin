@@ -5,7 +5,8 @@
              x:Name="ThePage">
     
     <ContentPage.Content>
-        
+                    <ScrollView >
+
         <StackLayout>
             <AbsoluteLayout HeightRequest="600" x:Name="absoluteDiv">
                 <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
@@ -42,7 +43,7 @@
                        VerticalOptions="Center"/>
                  
                     
-                    <Label Text="{Binding oponent}" HorizontalTextAlignment="Center"
+                    <Label Text="{Binding opponent}" HorizontalTextAlignment="Center"
                            TextColor="White" />
                     <Label Text="{Binding startDate, StringFormat='{}{0:hh\\:mm}'}" 
                            TextColor="White" HorizontalTextAlignment="Center"
@@ -63,7 +64,6 @@
                 
                 </Grid>
 
-            <ScrollView >
                 <StackLayout >
 <!--   Favourite Teams matches               -->
              <ListView x:Name="FavMatchesListView" SeparatorVisibility="None" RowHeight="90"
@@ -182,9 +182,10 @@
          </ListView>
 <!--   End of More matches   -->
                     </StackLayout>
-        </ScrollView>
 
 
             </StackLayout>
+                    </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>

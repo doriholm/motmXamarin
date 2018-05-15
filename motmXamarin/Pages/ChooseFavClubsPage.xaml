@@ -10,7 +10,7 @@
             
             <Frame BackgroundColor="Green" CornerRadius="0" VerticalOptions="Start"
                    HasShadow="false" Margin="0" OutlineColor="Green">
-            <Label Text="Vælg dine favorithold" Margin="0,35,0,0" 
+            <Label Text="Vælg dine favorithold" Margin="0,35,0,0" TextColor="White"
                    HorizontalTextAlignment="Center" FontSize="Large"/>                
             </Frame>
             <Entry Placeholder="Søgeord…" Keyboard="Default" VerticalOptions="Center" 

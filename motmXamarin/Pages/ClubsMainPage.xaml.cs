@@ -25,7 +25,7 @@ namespace motmXamarin
         {
             InitializeComponent();
             
-            
+
         }
 
         protected async override void OnAppearing()
@@ -99,6 +99,8 @@ namespace motmXamarin
             finally
             {
                 this.IsBusy = false;
+				ClubsListView.IsVisible = true;
+
             }
          
         }
