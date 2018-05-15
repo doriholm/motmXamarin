@@ -22,7 +22,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\motmXamarinPage.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\TeamPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -56,9 +55,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\ClubsMainPage.xaml.cs">
       <DependentUpon>ClubsMainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\motmXamarinPage.xaml.cs">
-      <DependentUpon>motmXamarinPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\TeamPage.xaml.cs">
       <DependentUpon>TeamPage.xaml</DependentUpon>
     </Compile>
@@ -77,6 +73,5 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Data\" />
     <Folder Include="$(MSBuildThisFileDirectory)Pages\" />
-    <Folder Include="$(MSBuildThisFileDirectory)AdminPages\" />
   </ItemGroup>
 </Project>

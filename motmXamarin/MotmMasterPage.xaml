@@ -13,8 +13,9 @@
                            HorizontalTextAlignment="Center"/>
             <!--     Add labels from code behind               -->
                 </StackLayout>
-                    <Button Text="All Clubs" Clicked="ShowAllClubsPage"/>
-                    <Button Text="All Matches" Clicked="ShowAllMatchesPage"/>
+                    <Button Text="Vis alle klubber" Clicked="ShowAllClubsPage"/>
+                    <Button Text="Vis alle kampe" Clicked="ShowAllMatchesPage"/>
+                    <Button Text="Favoritter" Clicked="SelectFavoriteClubs"/>
                     </StackLayout>
             </ContentPage.Content>
         </ContentPage>

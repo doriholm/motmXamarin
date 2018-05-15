@@ -70,23 +70,23 @@ namespace motmXamarin.Pages
             ((ListView)sender).SelectedItem = null;
 
 			App.UserRepo.AddFavClub(club);
-                       
 
+			GetFavClubs();
 			//SetListViewHeight();
-			var GetFavClubs = App.UserRepo.GetFavClubs();
-			foreach(FavClubs favClub in GetFavClubs)
-			{
-				if (favClubs.All(c => c.clubId != favClub.clubId))
-				{
-					Club newClub = new Club();
-					newClub.clubId = favClub.clubId;
-                    newClub.clubName = favClub.clubName;
-                    favClubs.Add(newClub);
-				}
+			//var GetFavClubs = App.UserRepo.GetFavClubs();
+			//foreach(FavClubs favClub in GetFavClubs)
+			//{
+			//	if (favClubs.All(c => c.clubId != favClub.clubId))
+			//	{
+			//		Club newClub = new Club();
+			//		newClub.clubId = favClub.clubId;
+   //                 newClub.clubName = favClub.clubName;
+   //                 favClubs.Add(newClub);
+			//	}
 
-			}
+			//}
 
-			FavClubsList.ItemsSource = favClubs;
+			//FavClubsList.ItemsSource = favClubs;
 		}
 
 		void RemoveFavClub(object sender, SelectedItemChangedEventArgs e)
@@ -102,38 +102,60 @@ namespace motmXamarin.Pages
 
 		}
 
-  //      public void SetListViewHeight()
-		//{
-		//	int Items = favClubs.Count();
-		//	int RowHeight = FavClubsList.RowHeight;
-		//	FavClubsList.HeightRequest = Items * RowHeight; 
-		//}
+		public void GetFavClubs()
+		{
+			var GetFavClubs = App.UserRepo.GetFavClubs();
+            foreach (FavClubs favClub in GetFavClubs)
+            {
+                if (favClubs.All(c => c.clubId != favClub.clubId))
+                {
+                    Club newClub = new Club();
+                    newClub.clubId = favClub.clubId;
+                    newClub.clubName = favClub.clubName;
+                    favClubs.Add(newClub);
+                }
 
+            }
+
+            FavClubsList.ItemsSource = favClubs;
+		}
+
+  
 		protected async override void OnAppearing()
         {
             base.OnAppearing();
 
+			var obj = (Application.Current as App).sportsIds;
 
-            try
-            {            
-				var sportCollection = await manager.GetSports();
-				var obj = (Application.Current as App).sportsIds;
-                
-				foreach (Sport sport in sportCollection)
+			if(obj.Count() == 0)
+			{
+				try
                 {
-					obj.Add(sport.sportId);
-					sports.Add(sport.sportId);
-                }
-            }
-			catch(Exception ex)
-            {
-				var result = ex.Message;
-            }
+                    var sportCollection = await manager.GetSports();
 
-			GetClubs(sports);
+
+                    foreach (Sport sport in sportCollection)
+                    {
+                        obj.Add(sport.sportId);
+                        sports.Add(sport.sportId);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var result = ex.Message;
+                }
+				GetClubs(sports);
+                App.UserRepo.AddSports(sports);
+			}
+			else
+			{
+				GetFavClubs();            
+				GetClubs(obj);
+			}
+            
+
 			SearchEntry.IsEnabled = true;
-			App.UserRepo.AddSports(sports);
-			
+
 
 
         }

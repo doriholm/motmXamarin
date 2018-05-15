@@ -155,6 +155,11 @@ namespace motmXamarin
         }
 
         
+        void SelectFavoriteClubs(object sender, System.EventArgs e)
+		{
+			IsPresented = false;
+			Detail = new NavigationPage(new ChooseFavClubsPage());
+		}
     }
 }
 

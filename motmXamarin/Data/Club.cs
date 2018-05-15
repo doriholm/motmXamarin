@@ -3,11 +3,7 @@ using System.Collections.Generic;
 
 namespace motmXamarin.Data
 {
-
-	// We nedd to add match Winner to GetSingleClub API
-    // change matchwinner so it returns 0 instead of null
-    // Uncomment winner from Match class when done
-
+      
 	public class SingleClub
     {
         public string clubName { set; get; }
@@ -66,7 +62,6 @@ namespace motmXamarin.Data
         public string opponentLogo { set; get; }
         public Player winner { set; get; }
         public List<Player> players { set; get; }
-        //public List<string> players { set; get; }
 
 
     }
