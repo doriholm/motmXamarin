@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="motmXamarin.Pages.AllMatchesPage">
+             x:Class="motmXamarin.Pages.AllMatchesPage"
+             x:Name="ThePage">
     
     <ContentPage.Content>
         
         <StackLayout>
-             <Grid x:Name="HeaderClubMatch" RowSpacing="0">
+            <AbsoluteLayout HeightRequest="600" x:Name="absoluteDiv">
+                <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                               AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <Label Text="Loading.." />
+                <ActivityIndicator IsRunning="{Binding Source={x:Reference ThePage}, Path=IsBusy}" 
+                               Color="Teal" WidthRequest="20" HeightRequest="20">
+          </ActivityIndicator>
+                </StackLayout>
+            </AbsoluteLayout>
+             <Grid x:Name="HeaderClubMatch" RowSpacing="0" IsVisible="false">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="175"/>
                                     <RowDefinition Height="50"/>
@@ -114,8 +124,8 @@
             
 
 <!--   More matches         -->
-            <Label Text="Kommende kampe" HorizontalOptions="Fill"
-                BackgroundColor="#BFB9B9" TextColor="White"
+            <Label Text="Kommende kampe" HorizontalOptions="Fill" IsVisible="false"
+                BackgroundColor="#BFB9B9" TextColor="White" x:Name="KommendeKampe"
                 HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                 HeightRequest="40"/>
           <ListView x:Name="OtherMatchesListView" SeparatorVisibility="None" RowHeight="90" 
@@ -173,7 +183,8 @@
 <!--   End of More matches   -->
                     </StackLayout>
         </ScrollView>
-                
+
+
             </StackLayout>
     </ContentPage.Content>
 </ContentPage>
