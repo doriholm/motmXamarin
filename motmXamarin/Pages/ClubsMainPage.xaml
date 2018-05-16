@@ -2,26 +2,29 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="motmXamarin.ClubsMainPage"
-             Title="Man Of The Match">
-    
+             Title="Man Of The Match" x:Name="ThePage">
+    <ContentPage.Content>
+    <ScrollView>
    <Grid>
 
-<!--        <StackLayout Spacing="100">
--->           
 
+    <AbsoluteLayout HeightRequest="600" x:Name="absoluteDiv">
+                <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                               AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <Label Text="Loading.." />
+                <ActivityIndicator IsRunning="{Binding Source={x:Reference ThePage}, Path=IsBusy}" 
+                               Color="Teal" WidthRequest="20" HeightRequest="20">
+          </ActivityIndicator>
+                </StackLayout>
+            </AbsoluteLayout>
             
-            <ListView ItemsSource="{Binding}" SeparatorVisibility="None" RowHeight="150" ItemTapped="OnSelection">
+            <ListView ItemsSource="{Binding}" SeparatorVisibility="None" x:Name="ClubsListView"
+                      RowHeight="150" ItemTapped="OnSelection" IsVisible="true">
             <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                               <!-- <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding clubName}" x:Name="{Binding clubId}" ClassId="{Binding clubId}">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer   Tapped="Label_OnTapped" NumberOfTapsRequired="1"/>
-                                    </Label.GestureRecognizers>
-                                        </Label>
-                                </StackLayout>-->
+                             
 
                                  <Grid x:Name="{Binding clubId}" ClassId="{Binding clubId}">
                                 <Grid.RowDefinitions>
@@ -32,34 +35,30 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 
-                <Image Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
-                       Source="stadium.png" HeightRequest="150" 
+                <Image Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" x:Name="ClubStadium"
+                       Source="{Binding stadiumPic}" HeightRequest="150" 
                        Aspect="AspectFill"/>
                 <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
                        BackgroundColor="Black" Opacity=".25"/>
-                <Image Grid.Column="0" Source="blogo.png"
+                <Image Grid.Column="0" Source="{Binding clubPic}" x:Name="ClubLogo"
                        Margin="20" HorizontalOptions="Center"
                        VerticalOptions="Center"/>
                  <StackLayout Grid.Column="1"  Grid.Row="0" VerticalOptions="Center">
                     <Label Text="{Binding clubName}"
                            TextColor="White" FontAttributes="Bold"/>
-                    <Label Text="Herning, Denmark"
+                    <Label Text="{Binding Homecity}"
                            TextColor="White" />
                 </StackLayout>
-                             <!-- <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer   Tapped="Label_OnTapped" NumberOfTapsRequired="1"/>
-                                    </Grid.GestureRecognizers>   -->   
+                          
             </Grid>
                             </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-<!--        </StackLayout>
--->
 
-       
 
   </Grid>
+        </ScrollView>
+        </ContentPage.Content>
 </ContentPage>

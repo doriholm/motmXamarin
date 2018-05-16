@@ -20,22 +20,18 @@ namespace motmXamarin
         //If user has saved sportIds locally get that
         readonly List<int> sportIds = new List<int>();
 
-        //public ClubsMainPage()
-        //{
-        //    InitializeComponent();
-           
-        //}
-
-        public ClubsMainPage(List<int> sportIdsList)
+        
+        public ClubsMainPage()
         {
             InitializeComponent();
-            BindingContext = clubs;
-            sportIds = sportIdsList;
+            
+
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+			string umbracoUrl = "http://motmv2.azurewebsites.net";
 
             // Turn on network indicator
             this.IsBusy = true;
@@ -43,12 +39,9 @@ namespace motmXamarin
             try
             {
                 
-                if(sportIds.Count() == 0)
-                {
-                    sportIds.Add(1084);
-                }
+				var globalSportIds = (Application.Current as App).sportsIds;
 
-                var sportCollection = await manager.GetClubs(sportIds);
+				var sportCollection = await manager.GetClubs(globalSportIds);
 
 
                 foreach (Club club in sportCollection)
@@ -56,24 +49,21 @@ namespace motmXamarin
                     if (clubs.All(c => c.clubId != club.clubId))
                         clubs.Add(club);
                 }
+				foreach(Club club in clubs)
+				{					
+					club.clubPic = (club.clubPic != "") ? umbracoUrl + club.clubPic : "blogo.png";
+					club.stadiumPic = (club.stadiumPic != "") ? umbracoUrl + club.stadiumPic : "stadium.png";
+				}
             }
             finally
             {
                 this.IsBusy = false;
             }
+			BindingContext = clubs;
 
         }
 
-        //public void Label_OnTapped(object sender, EventArgs e)
-        //{
-        //    var obj = (Grid)sender;
-        //    int theClubId = int.Parse(obj.ClassId);
-
-        //    //var obj = ((TappedEventArgs)e).Parameter;
-        //    //WorkIt.Text = obj.ClassId;
-        //    Navigation.PushAsync(new ClubPage(theClubId));
-
-        //}
+        
 
 
         //changed method so it checks the Team count before deciding which page to navigate to. In case there are more than 1 team
@@ -89,7 +79,7 @@ namespace motmXamarin
 
             try
             {
-
+				ClubsListView.IsVisible = false;
                 var sportCollection = await manager.GetSingleClub(myJob.clubId);
                 GC.KeepAlive(sportCollection);
 
@@ -109,6 +99,8 @@ namespace motmXamarin
             finally
             {
                 this.IsBusy = false;
+				ClubsListView.IsVisible = true;
+
             }
          
         }

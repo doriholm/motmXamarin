@@ -14,6 +14,7 @@ namespace motmXamarin.Pages
     {
 		object newClub;
 		readonly IList<Match> matches = new ObservableCollection<Match>();
+		object motmPlayer; 
 
 		public TeamPage(SingleClub clubObject, int teamId )
         {
@@ -37,9 +38,24 @@ namespace motmXamarin.Pages
 
             string umbracoUrl = "http://motmv2.azurewebsites.net/";
             clubLogo.Source = (clubObject.clubPic != "") ? umbracoUrl + clubObject.clubPic : "blogo.png";
-            clubStadium.Source = (clubObject.stadiumPic != "") ? umbracoUrl + clubObject.stadiumPic : "stadium.png";
+			clubStadium.Source = (clubObject.stadiumPic != "") ? umbracoUrl + clubObject.stadiumPic : "stadium.png";
 
+			foreach(Match match in matches)
+			{
+				match.matchName = clubObject.clubName;
+				match.opponentLogo = (match.opponentLogo != "") ? umbracoUrl + match.opponentLogo : "blogo.png";
+			}
+
+			foreach(var team in clubObject.teams)
+			{
+				motmPlayer = team.highestT;
+			}
+
+
+			MotmPlayer.BindingContext = motmPlayer;
 			NextMatches.ItemsSource = matches;
+			TeamNameListView.Text = clubObject.clubName;
+
         }
 
         public async void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
@@ -53,7 +69,7 @@ namespace motmXamarin.Pages
 
             ((ListView)sender).SelectedItem = null; // de-select the row
 
-			await Navigation.PushAsync(new MatchPage(club, match));
+			await Navigation.PushAsync(new MatchPage(club, match, matchFromAll:null));
         }
 
 		public void GetTeamMatches(Team team)

@@ -22,7 +22,8 @@ namespace motmXamarin.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            LoadApplication(new App());
+			string dbPath = FileAccessHelper.GetLocalFilePath("people.db3");
+            LoadApplication(new App(dbPath));
         }
     }
 }

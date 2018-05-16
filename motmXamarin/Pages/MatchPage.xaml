@@ -4,6 +4,7 @@
              x:Class="motmXamarin.Pages.MatchPage">
     
     <ContentPage.Content>
+                    <ScrollView >
 
         <StackLayout>
              <Grid x:Name="Club" RowSpacing="0" VerticalOptions="Start">
@@ -31,7 +32,7 @@
                  <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                     <Label x:Name="ClubName" Text="Vs"
                            TextColor="White" FontAttributes="Bold"/>
-                    <Label Text="{Binding clubName}" Margin="10,0"
+                    <Label Text="" Margin="10,0" x:Name="OpponentName"
                            TextColor="White" LineBreakMode="WordWrap"/>
                 </StackLayout>
                     
@@ -40,8 +41,8 @@
                 <StackLayout Orientation="Horizontal" VerticalOptions="End"
                              Grid.Column="0"  Grid.Row="1"
                              Margin="10">
-                    <Label Text="Icon" TextColor="White"/>
-                    <Label Text="Loaction" TextColor="White"/>
+                    <Image Source="locationIcon.png" HeightRequest="14"/>
+                    <Label Text="{Binding HomeCity}" TextColor="White" x:Name="MatchLocation"/>
                 </StackLayout>
                  
                 <Label Grid.Row="2" x:Name="ChooseMOTM"
@@ -53,10 +54,9 @@
 
             
 <!--    List of Players to choose for MOTM and Sponsor      -->
-            <StackLayout x:Name="ChoosePlayer" IsVisible="true" VerticalOptions="FillAndExpand"
+            <StackLayout x:Name="ChoosePlayer" IsVisible="false" VerticalOptions="FillAndExpand"
                          Orientation="Vertical" Spacing="0">
                 
-                <ScrollView >
                 <StackLayout VerticalOptions="StartAndExpand" >
                     <ListView SeparatorVisibility="None" x:Name="PlayerList"
                               Margin="0" RowHeight="40" IsVisible="true"
@@ -79,7 +79,6 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout>
-                </ScrollView>
 
     <!--   Match has Finished            -->
             <StackLayout VerticalOptions="FillAndExpand" x:Name="MatchOver" 
@@ -92,10 +91,9 @@
     <!--   End of Match has Finished            -->
                 
             <Frame HasShadow="false" BackgroundColor="#85D093" CornerRadius="0"
-                   VerticalOptions="EndAndExpand" Margin="0" x:Name="SponsorAd" IsVisible="true">
+                   VerticalOptions="EndAndExpand" Margin="0" x:Name="SponsorAd" IsVisible="false">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                    <Label Text="Sponsoreret af" TextColor="White"/>
-                    <Label x:Name="sponsorName" Text="Icon" />
+                    <Label Text="Sponsoreret af Bones" TextColor="White"/>
                 </StackLayout>
             </Frame>
                 
@@ -116,5 +114,7 @@
 
 
         </StackLayout>
+       </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>

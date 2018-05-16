@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="motmXamarin.Pages.ChooseFavClubsPage"
+             NavigationPage.HasNavigationBar="False">
+    
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical" Spacing="0">
+            
+            <Frame BackgroundColor="Green" CornerRadius="0" VerticalOptions="Start"
+                   HasShadow="false" Margin="0" OutlineColor="Green">
+            <Label Text="Vælg dine favorithold" Margin="0,35,0,0" TextColor="White"
+                   HorizontalTextAlignment="Center" FontSize="Large"/>                
+            </Frame>
+            <Entry Placeholder="Søgeord…" Keyboard="Default" VerticalOptions="Center" 
+                    HorizontalTextAlignment="Center" 
+                   Completed="Search_Clubs" x:Name="SearchEntry"
+                   IsEnabled="false"/>
+
+                <ListView SeparatorVisibility="None" x:Name="FavClubsList" VerticalOptions="Start"
+                       Margin="0" RowHeight="30" IsVisible="true" HeightRequest="270" 
+                       ItemSelected="RemoveFavClub" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                    <StackLayout Orientation="Horizontal" Margin="10, 0"  
+                                                 VerticalOptions="Center" HorizontalOptions="Start">
+                                            <Label Text="{Binding clubName}" Margin="0" 
+                                                   FontAttributes="Bold"/>
+                                            <Image Source="goldStar256.png" HorizontalOptions="EndAndExpand" 
+                                                   HeightRequest="15" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+            
+            
+            <ScrollView VerticalOptions="Start" Margin="0">
+                 <ListView SeparatorVisibility="None" x:Name="ClubsList" 
+                       Margin="0" RowHeight="40" IsVisible="true"
+                       ItemSelected="SelectFavClub" BackgroundColor="Silver">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                    <StackLayout Margin="0"  VerticalOptions="Center">
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" 
+                                                     Margin="10, 0">
+                                            <Label Text="{Binding clubName}" Margin="0"/>
+                                        </StackLayout>
+                                        <Label BackgroundColor="White" HeightRequest="2" Margin="0"/>
+                                    </StackLayout>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+            </ScrollView>
+
+            
+              <Frame BackgroundColor="Green" CornerRadius="0" 
+                     VerticalOptions="EndAndExpand" OutlineColor="Green">
+                 <Label Text="Afslut"  HorizontalTextAlignment="Center" x:Name="continueBtn"
+                    Margin="0,0,0,35" TextColor="White"/>
+              </Frame>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
