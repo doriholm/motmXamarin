@@ -41,7 +41,7 @@
                 <StackLayout Orientation="Horizontal" VerticalOptions="End"
                              Grid.Column="0"  Grid.Row="1"
                              Margin="10">
-                    <Image Source="locationIcon.png" />
+                    <Image Source="locationIcon.png" HeightRequest="14"/>
                     <Label Text="{Binding HomeCity}" TextColor="White" x:Name="MatchLocation"/>
                 </StackLayout>
                  

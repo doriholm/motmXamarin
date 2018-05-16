@@ -35,85 +35,90 @@ namespace motmXamarin.Pages
 		{
 			base.OnAppearing();
 
-			this.IsBusy = true;
+			if(favMatches.Count() == 0 && otherMatches.Count() == 0){
+				this.IsBusy = true;
 
-			try
-			{
-				var globalSportIds = (Application.Current as App).sportsIds;
-				var favClubsIds = (Application.Current as App).favClubsIds;
-				List<int> favClubsIdsList = new List<int>();
+                try
+                {
+                    var globalSportIds = (Application.Current as App).sportsIds;
+                    var favClubsIds = (Application.Current as App).favClubsIds;
+                    List<int> favClubsIdsList = new List<int>();
 
-				foreach (FavClubs club in favClubsIds)
-				{
-					if (!favClubsIdsList.Contains(club.clubId))
-						favClubsIdsList.Add(club.clubId);
-				}
+                    foreach (FavClubs club in favClubsIds)
+                    {
+                        if (!favClubsIdsList.Contains(club.clubId))
+                            favClubsIdsList.Add(club.clubId);
+                    }
 
-				var sportCollection = await manager.GetAllMatches(globalSportIds);
-
-
-				if (favClubsIds.Count() != 0)
-				{
-
-					foreach (allmatches match in sportCollection)
-					{
-						foreach (allmatchesinfo info in match.info)
-						{
-							if (favClubsIdsList.Contains(info.clubid))
-								favMatches.Add(match);
-							else
-								otherMatches.Add(match);
-						}
-
-					}
-				}
-				else
-				{
-					foreach (allmatches match in sportCollection)
-					{
-						if (otherMatches.All(c => c.matchId != match.matchId))
-							otherMatches.Add(match);
-					}
-
-				}
-
-				favMatches = favMatches.OrderBy(x => x.startDate).Reverse().ToList();
-				otherMatches = otherMatches.OrderBy(x => x.startDate).Reverse().ToList();
-
-				if (favMatches.Count() != 0)
-				{
-					FixUmbracoUrl(favMatches);
-					FavMatchesText.IsVisible = true;
-					FavMatchesListView.IsVisible = true;
-					firstMatch = favMatches[0];
-					FavMatchesText.Text = favMatches.Count() + FavMatchesText.Text;
-				}
-				else
-				{
-					firstMatch = otherMatches[0];
-				}
+                    var sportCollection = await manager.GetAllMatches(globalSportIds);
 
 
+                    if (favClubsIds.Count() != 0)
+                    {
 
-				if (otherMatches.Count() != 0)
-					FixUmbracoUrl(otherMatches);
+                        foreach (allmatches match in sportCollection)
+                        {
+                            foreach (allmatchesinfo info in match.info)
+                            {
+                                if (favClubsIdsList.Contains(info.clubid))
+                                    favMatches.Add(match);
+                                else
+                                    otherMatches.Add(match);
+                            }
 
-				FavMatchesListView.ItemsSource = favMatches;
-				OtherMatchesListView.ItemsSource = otherMatches;
-				HeaderClubMatch.BindingContext = firstMatch;
+                        }
+                    }
+                    else
+                    {
+                        foreach (allmatches match in sportCollection)
+                        {
+                            if (otherMatches.All(c => c.matchId != match.matchId))
+                                otherMatches.Add(match);
+                        }
 
-				int Items = favMatches.Count();
-				int RowHeight = FavMatchesListView.RowHeight;
-				FavMatchesListView.HeightRequest = Items * RowHeight;
+                    }
+
+                    favMatches = favMatches.OrderBy(x => x.startDate).Reverse().ToList();
+                    otherMatches = otherMatches.OrderBy(x => x.startDate).Reverse().ToList();
+
+                    if (favMatches.Count() != 0)
+                    {
+                        FixUmbracoUrl(favMatches);
+                        FavMatchesText.IsVisible = true;
+                        FavMatchesListView.IsVisible = true;
+                        firstMatch = favMatches[0];
+                        FavMatchesText.Text = favMatches.Count() + FavMatchesText.Text;
+                    }
+                    else
+                    {
+                        firstMatch = otherMatches[0];
+						FavMatchesText.IsVisible = false;
+
+                    }
+
+
+
+                    if (otherMatches.Count() != 0)
+                        FixUmbracoUrl(otherMatches);
+
+                    FavMatchesListView.ItemsSource = favMatches;
+                    OtherMatchesListView.ItemsSource = otherMatches;
+                    HeaderClubMatch.BindingContext = firstMatch;
+
+                    int Items = favMatches.Count();
+                    int RowHeight = FavMatchesListView.RowHeight;
+                    FavMatchesListView.HeightRequest = Items * RowHeight;
+                }
+                finally
+                {
+                    this.IsBusy = false;
+                    absoluteDiv.IsVisible = false;
+                    KommendeKampe.IsVisible = true;
+                    HeaderClubMatch.IsVisible = true;
+
+                }
 			}
-				finally
-            {
-                this.IsBusy = false;
-				absoluteDiv.IsVisible = false;
-				KommendeKampe.IsVisible = true;
-				HeaderClubMatch.IsVisible = true;
 
-            }
 		}
 
 

@@ -142,6 +142,7 @@ namespace motmXamarin
         void ShowAllMatchesPage(object sender, System.EventArgs e)
         {
 			App.UserRepo.AddSports(sportIdsList);
+			(Application.Current as App).sportsIds = sportIdsList;
             IsPresented = false;
             Detail = new NavigationPage(new AllMatchesPage());
         }
